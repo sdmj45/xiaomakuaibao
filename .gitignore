@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+db.json
+node_modules/
+public/
+.deploy*/
+.idea
+*.iml
+
+target/*
+project/target/*
+project/proejct/target/*
