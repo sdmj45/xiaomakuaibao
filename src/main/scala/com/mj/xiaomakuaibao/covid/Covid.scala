@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 
 import better.files
 import com.github.tototoshi.csv._
+import com.mj.xiaomakuaibao.Module
 import com.mj.xiaomakuaibao.utils.DateUtils.{convertLocalDatetimeToStr, _}
 import com.mj.xiaomakuaibao.utils.FileUtils.{overwriteToFile, _}
 import com.mj.xiaomakuaibao.utils.{DateUtils, FileUtils}
@@ -15,7 +16,9 @@ import sttp.client.{HttpURLConnectionBackend, basicRequest, _}
 import scala.collection.immutable
 import scala.util.{Failure, Try}
 
-object Covid {
+class Covid extends Module {
+  override val lastUpdatedFile: String = "data/last_updated/covid_last_updated.txt"
+
   implicit val formats = new DefaultFormats {
     override def dateFormatter: SimpleDateFormat = formatter
   }
@@ -35,8 +38,7 @@ object Covid {
     "fr-nor" -> "Normandie"
   )
 
-  def main(args: Array[String]): Unit = {
-    val lastUpdatedFile = "data/last_updated/covid_last_updated.txt"
+  override def run: Unit = {
     for {
       lastUpdatedTime <- readFile(lastUpdatedFile)
       lastCommitTime <- getLastCommitTime
@@ -138,5 +140,6 @@ object Covid {
   private def createNewLine(year: String, month: String, day: String, diff: Int): String = {
     s"""[Date.UTC($year, ${month.toInt - 1},$day), $diff]"""
   }
+
 
 }

@@ -1,9 +1,9 @@
-package com.mj.xiaomakuaibao.api
+package com.mj.xiaomakuaibao.news.api
 
 import java.text.SimpleDateFormat
 import java.time.{LocalDateTime, ZoneOffset}
 
-import com.mj.xiaomakuaibao.model.{Article, NewsApiResponse}
+import com.mj.xiaomakuaibao.news.model.{Article, NewsApiResponse}
 import com.mj.xiaomakuaibao.utils.DateUtils
 import org.json4s.jackson.JsonMethods.parse
 import org.json4s.{DefaultFormats, _}
@@ -29,7 +29,6 @@ class NewsApi {
       r => Success(parse(r).extract[NewsApiResponse])
     )
   }
-
 
   def filterNewsResponse(
                           res: NewsApiResponse,

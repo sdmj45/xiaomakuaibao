@@ -1,4 +1,4 @@
-package com.mj.xiaomakuaibao.model
+package com.mj.xiaomakuaibao.news.model
 
 case class NewsApiResponse(status: String,
                            totalResults: Int,

@@ -1,8 +1,9 @@
-package com.mj.xiaomakuaibao.api
+package com.mj.xiaomakuaibao.news.api
+
+import java.text.SimpleDateFormat
 
 import cats.implicits._
-import com.mj.xiaomakuaibao.model.{Article, TranslationResponse}
-import com.mj.xiaomakuaibao.utils.DateUtils
+import com.mj.xiaomakuaibao.news.model.{Article, TranslationResponse}
 import org.json4s.jackson.JsonMethods.parse
 import org.json4s.{DefaultFormats, _}
 import sttp.client.{HttpURLConnectionBackend, basicRequest, _}
@@ -19,18 +20,13 @@ class TranslationApi {
       case _ =>
         articles
           .sortBy(_.publishedAt)
-          .map(translateArticle _ andThen convertToMarkdown)
+          .map(translateArticle _ andThen convertToHtml)
           .sequence
           .map(l => Some(l.mkString("\r\n")))
     }
   }
 
   def translateArticle(article: Article): Try[Article] = {
-    /* val content = article.title :: article.description :: article.content :: Nil mkString separator
-    callApi(content).map(res => {
-      val Array(title, description, content) = res.split(separator)
-      article.copy(title = title, description = description, content = content)
-    })*/
     for {
       title <- callApi(article.title)
       description <- callApi(article.description)
@@ -57,15 +53,15 @@ class TranslationApi {
     )
   }
 
-  def convertToMarkdown: Try[Article] => Try[String] = _.map { article =>
+  def convertToHtml: Try[Article] => Try[String] = _.map { article =>
     val newArticle = replaceChar(article)
     s"""
-       |**标题:** **${newArticle.title}**
-       |**描述:** ${newArticle.description}
-       |**内容摘要:** ${newArticle.content}
-       |**发布时间:** ${DateUtils.formatter.format(newArticle.publishedAt)}
-       |**链接:** ${article.url}
-       |**来源:** ${article.author}
+       | <li>
+       |  <p>${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(newArticle.publishedAt)}</p>
+       |  <h5 class="text-primary">${newArticle.title}</h5>
+       |  <p>${newArticle.description}</p>
+       |  <p>${newArticle.content}</p>
+       | </li>
        |""".stripMargin
   }
 
