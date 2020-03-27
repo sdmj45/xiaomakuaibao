@@ -18,7 +18,6 @@ class NewsApi {
     implicit val formats = new DefaultFormats {
       override def dateFormatter: SimpleDateFormat = DateUtils.formatter
     }
-
     val response = basicRequest
       .get(
         uri"http://newsapi.org/v2/top-headlines?sources=google-news-fr&apiKey=8408854764ab483a8783d193a0ead39e"
@@ -31,10 +30,11 @@ class NewsApi {
     )
   }
 
+
   def filterNewsResponse(
-    res: NewsApiResponse,
-    lastPublishedAt: LocalDateTime
-  ): (List[Article], Option[String]) = {
+                          res: NewsApiResponse,
+                          lastPublishedAt: LocalDateTime
+                        ): (List[Article], Option[String]) = {
     implicit val localDateOrdering: Ordering[LocalDateTime] =
       Ordering.by(_.toEpochSecond(ZoneOffset.UTC))
 

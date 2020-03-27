@@ -15,5 +15,6 @@ lazy val root = (project in file("."))
         sttp ++
         json4s ++
         cats ++
-        akka
+        akka ++
+        scalaCsv
   )

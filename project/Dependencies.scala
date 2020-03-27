@@ -1,7 +1,10 @@
 import sbt._
 
 object Dependencies {
-
+  val jacksonExclusions = Seq(
+    ExclusionRule(organization = "com.fasterxml.jackson.core"),
+    ExclusionRule(organization = "org.codehaus.jackson")
+  )
   lazy val scalaTest = Seq("org.scalatest" %% "scalatest" % "3.0.5" % Test)
   lazy val betterfile = Seq("com.github.pathikrit" %% "better-files" % "3.8.0")
   lazy val sttp = Seq("com.softwaremill.sttp.client" %% "core" % "2.0.3")
@@ -17,10 +20,7 @@ object Dependencies {
   ).map(_.excludeAll(jacksonExclusions: _*)) ++ jackson
   lazy val cats = Seq("org.typelevel" %% "cats-core" % "2.0.0")
   lazy val akka = Seq("com.typesafe.akka" %% "akka-actor-typed" % "2.5.21")
-  val jacksonExclusions = Seq(
-    ExclusionRule(organization = "com.fasterxml.jackson.core"),
-    ExclusionRule(organization = "org.codehaus.jackson")
-  )
+  lazy val scalaCsv = Seq("com.github.tototoshi" %% "scala-csv" % "1.3.6")
 }
 
 object Versions {

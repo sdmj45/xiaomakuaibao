@@ -5,10 +5,11 @@ import java.time.LocalDateTime
 import akka.actor.Actor
 import better.files._
 import com.mj.xiaomakuaibao.api.{NewsApi, TranslationApi}
-import com.mj.xiaomakuaibao.utils.DateUtils
+import com.mj.xiaomakuaibao.utils.{DateUtils, FileUtils}
 
 import scala.sys.process._
 import scala.util.{Failure, Success, Try}
+import FileUtils._
 
 object Back extends Actor {
   val lastPublishedAtPath = "src/main/resources/lastPublishedAt.txt"
@@ -42,28 +43,6 @@ object Back extends Actor {
 
   }
 
-  def readFile(fileName: String): Try[LocalDateTime] = {
-    for {
-      str <- Try(fileName.toFile).map(_.contentAsString)
-      date <- Try(DateUtils.formatter.parse(str))
-      res <- Try(DateUtils.convertDateToLocalDatetime(date))
-    } yield res
-  }
-
-  def appendToFile(fileName: String, content: Option[String]): Option[File] = {
-    content.map(c => {
-      val f: File = fileName.toFile
-      f.append(c)
-    })
-  }
-
-  def overwriteToFile(fileName: String,
-                      content: Option[String]): Option[File] = {
-    content.map(c => {
-      val f: File = fileName.toFile
-      f.overwrite(c)
-    })
-  }
 
   def runDeploy(): Try[String] = {
     Try("../deploy.sh".!!)
