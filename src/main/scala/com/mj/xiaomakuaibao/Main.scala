@@ -10,6 +10,6 @@ object Main {
     val system = akka.actor.ActorSystem("system")
     val backJob = system.actorOf(Props(Back), "back-job")
 
-    system.scheduler.schedule(0 millisecond, 10 second, backJob, "com/mj/xiaomakuaibao")
+    system.scheduler.schedule(0 millisecond, 20 minute, backJob, "com/mj/xiaomakuaibao")
   }
 }

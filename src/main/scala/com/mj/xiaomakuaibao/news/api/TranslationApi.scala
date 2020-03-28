@@ -61,14 +61,15 @@ class TranslationApi {
        |  <h5 class="text-primary">${newArticle.title}</h5>
        |  <p>${newArticle.description}</p>
        |  <p>${newArticle.content}</p>
+       |  <img src="${newArticle.urlToImage}" alt="${newArticle.title}" class="img-thumbnail">
        |  <a href="${newArticle.url}" target="_blank">原文链接：${newArticle.url}</a>
        |  <p class="text-muted">来源：${newArticle.author}</p>
-       | </li>
        |""".stripMargin
   }
 
   private def replaceChar(article: Article): Article = {
     article.copy(
+      author = Option(article.author).getOrElse("不详"),
       title = replaceString(article.title),
       content = replaceString(article.content),
       description = replaceString(article.description)
@@ -82,8 +83,6 @@ object TranslationApi {
     Map("\\\\n" -> " ", "\\\\r" -> " ", "辆坦克" -> "个字符", "坦克" -> "字符")
 
   def apply(): TranslationApi = new TranslationApi()
-
-  //  def separator: String = "\"££££££\""
 
   def replaceString(s: String): String =
     charsToReplace
