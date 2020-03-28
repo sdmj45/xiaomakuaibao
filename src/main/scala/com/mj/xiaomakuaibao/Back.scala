@@ -17,7 +17,7 @@ object Back extends Actor {
       val news: Module = new News
       val covid: Module = new Covid
       covid :: news :: Nil foreach (_.run)
-      //deploy
+      deploy
     }
     case _ => throw new Exception("not allowed !")
   }
