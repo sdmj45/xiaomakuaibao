@@ -61,6 +61,8 @@ class TranslationApi {
        |  <h5 class="text-primary">${newArticle.title}</h5>
        |  <p>${newArticle.description}</p>
        |  <p>${newArticle.content}</p>
+       |  <a href="${newArticle.url}" target="_blank">原文链接：${newArticle.url}</a>
+       |  <p class="text-muted">来源：${newArticle.author}</p>
        | </li>
        |""".stripMargin
   }

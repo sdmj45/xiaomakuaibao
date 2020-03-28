@@ -56,13 +56,13 @@ class Covid extends Module {
     val recoveredInitialData = readInitialData("data/data/recovered.csv")
 
     val newCaseStr: String = generateNewCaseStr(confirmedInitialData)
-    overwriteToFile("public/assets/js/data/dailyNewCase_data.js", Some(newCaseStr))
+    overwriteToFile("public/assets/data/dailyNewCase_data.js", Some(newCaseStr))
 
     val totalCaseStr: String = generateAllTotalCaseStr(Seq(("累计确诊", confirmedInitialData), ("累计死亡", deathsInitialData), ("累计治愈", recoveredInitialData)))
-    overwriteToFile("public/assets/js/data/totalStat_data.js", Some(totalCaseStr))
+    overwriteToFile("public/assets/data/totalStat_data.js", Some(totalCaseStr))
 
     val mapStr: String = generateMapStr(confirmedInitialData)
-    overwriteToFile("public/assets/js/data/map_data.js", Some(mapStr))
+    overwriteToFile("public/assets/data/map_data.js", Some(mapStr))
   }
 
   private def ifToDownload(lastCommitTime: LocalDateTime, lastUpdatedTime: LocalDateTime): Boolean = lastCommitTime.isAfter(lastUpdatedTime)
