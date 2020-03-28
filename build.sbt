@@ -6,6 +6,11 @@ ThisBuild / organization := "com.mj"
 ThisBuild / organizationName := "xiaomakuaibao"
 ThisBuild / name := "xiaomakuaibao"
 
+enablePlugins(GhpagesPlugin)
+git.remoteRepo := "git@github.com:sdmj45/majian.xiaomakuaibao.git"
+ghpagesBranch := "master"
+//ghpagesRepository := "public"
+
 lazy val root = (project in file("."))
   .settings(
     name := "back",
