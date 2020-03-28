@@ -47,6 +47,7 @@ class Covid extends Module {
       downloadFiles
       overwriteToFile(lastUpdatedFile, Some(convertLocalDatetimeToStr(lastCommitTime)))
       updateJsDataFiles
+      println("Covid ok !")
     }
   }
 

@@ -17,12 +17,14 @@ object Back extends Actor {
       val news: Module = new News
       val covid: Module = new Covid
       covid :: news :: Nil foreach (_.run)
+      deploy
     }
     case _ => throw new Exception("not allowed !")
   }
 
-  def runDeploy(): Try[String] = {
-    Try("../deploy.sh".!!)
+  def deploy: Unit = {
+    "./deploy.sh".!!
+    println("deployed !!")
   }
 }
 

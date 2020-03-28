@@ -23,7 +23,7 @@ class News extends Module {
       _ <- Try(appendToFile("public/assets/data/news.html", res))
       _ <- Try(overwriteToFile(lastUpdatedFile, newLastPublishedAt))
     } yield Unit) match {
-      case Success(_) => println("Yes !")
+      case Success(_) => println("News ok !")
       case Failure(e) => throw new Exception(e)
     }
   }
