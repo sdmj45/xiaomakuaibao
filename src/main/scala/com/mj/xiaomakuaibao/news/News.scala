@@ -20,7 +20,7 @@ class News extends Module {
         newsApi.filterNewsResponse(response, lastPublishedAt)
       )
       res <- translationApi.call(articles)
-      _ <- Try(appendToFile("public/assets/data/news.html", res))
+      _ <- Try(appendToFile("admin/data/news_back.html", res))
       _ <- Try(overwriteToFile(lastUpdatedFile, newLastPublishedAt))
     } yield Unit) match {
       case Success(_) => println("News ok !")
