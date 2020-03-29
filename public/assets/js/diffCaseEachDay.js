@@ -3,7 +3,7 @@ Highcharts.chart('container-2', {
         enabled: false
     },
     title: {
-        text: '法国肺炎每日变化'
+        text: '新冠肺炎法国每日变化图'
     },
     subtitle: {
         text: '来源： 综合数据'

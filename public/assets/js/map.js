@@ -7,7 +7,7 @@
 			map: 'countries/fr/custom/fr-all-mainland'
 		},
 		title: {
-			text: '法国肺炎分布'
+			text: '新冠肺炎法国分布'
 		},
 		subtitle: {
 			text: '来源：综合数据'

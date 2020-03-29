@@ -9,7 +9,7 @@ Highcharts.chart('container-3', {
 			  enabled: false
 		    },
 			title: {
-				text: '法国肺炎每日确诊新增数'
+				text: '新冠肺炎法国每日确诊新增数'
 			},
 			subtitle: {
 				text: '来源：综合数据'
