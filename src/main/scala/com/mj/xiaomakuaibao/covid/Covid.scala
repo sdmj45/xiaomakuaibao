@@ -56,11 +56,23 @@ class Covid extends Module {
     val deathsInitialData = readInitialData("data/data/deaths.csv")
     val recoveredInitialData = readInitialData("data/data/recovered.csv")
 
-    val totalCaseEachDayStr: String = generateAllTotalCaseStr(Seq(("累计确诊", confirmedInitialData), ("累计死亡", deathsInitialData), ("累计治愈", recoveredInitialData)))
+    val newConfirmedCaseStr: String = calculateEachDayDiffStr(confirmedInitialData)
+    val newDeathsCaseStr: String = calculateEachDayDiffStr(deathsInitialData)
+    val newRecoveredCaseStr: String = calculateEachDayDiffStr(recoveredInitialData)
+
+    val allTotalData = Seq(("累计确诊", "text-primary", confirmedInitialData), ("累计死亡", "text-danger", deathsInitialData), ("累计治愈", "text-success", recoveredInitialData))
+    val allDiffDataStr: Seq[(String, String)] = Seq(("每日新增确诊", newConfirmedCaseStr), ("每日新增死亡", newDeathsCaseStr), ("每日新增治愈",  newRecoveredCaseStr))
+
+    val summaryStr: String = generateSummary(allTotalData)
+    overwriteToFile("public/assets/data/summary.html", Some(summaryStr))
+
+    val totalCaseEachDayStr: String = generateAllTotalCaseStr(allTotalData)
     overwriteToFile("public/assets/data/totalCaseEachDayData.js", Some(totalCaseEachDayStr))
 
-    val newCaseStr: String = generateNewCaseStr(confirmedInitialData)
-    overwriteToFile("public/assets/data/dailyNewCaseData.js", Some(newCaseStr))
+    val diffRecapData= generateDiffCaseEachDayStr(allDiffDataStr)
+    overwriteToFile("public/assets/data/diffCaseEachDayData.js", Some(diffRecapData))
+
+    overwriteToFile("public/assets/data/dailyNewCaseData.js", Some(s"""var dailyNewCaseData=[$newConfirmedCaseStr]"""))
 
     val mapStr: String = generateMapStr(confirmedInitialData)
     overwriteToFile("public/assets/data/mapData.js", Some(mapStr))
@@ -97,18 +109,35 @@ class Covid extends Module {
     FileUtils.downloadFiles(filesToDownload)
   }
 
+  private def generateDiffCaseEachDayStr(allDiffDataStr: Seq[(String, String)]): String = {
+    val prepare = allDiffDataStr.map{case (name, data) => s"""{name:'$name',data:[$data]}"""}
+    s"""var diffRecapData=[${prepare.mkString(",")}]"""
+  }
+
   private def generateMapStr(initialData: immutable.Seq[Map[String, String]]): String = {
     val lastData = initialData.last
     val mapData = franceRegionMap.map { case (k, v) => s"""['$k', ${lastData(v).toInt}]""" }
     s"""var mapData=[${mapData.mkString(",")}]"""
   }
 
-  private def generateAllTotalCaseStr(seq: Seq[(String, immutable.Seq[Map[String, String]])]): String = {
-    val dataStr = seq.map { case (name, data) => generateSubTotalCaseStr(name, data) }.mkString(",")
+  private def generateSummary(seq: Seq[(String, String, immutable.Seq[Map[String, String]])]): String = {
+    seq.map { case (name, className, data) => generateSubSummaryStr(name, className, data) }.mkString("")
+  }
+
+  private def generateAllTotalCaseStr(seq: Seq[(String, String, immutable.Seq[Map[String, String]])]): String = {
+    val dataStr = seq.map { case (name, _, data) => generateSubTotalCaseEachDayStr(name, data) }.mkString(",")
     s"""var totalRecapData=[$dataStr]"""
   }
 
-  private def generateSubTotalCaseStr(name: String, initialData: immutable.Seq[Map[String, String]]): String = {
+  private def generateSubSummaryStr(name: String, className: String, initialData: immutable.Seq[Map[String, String]]): String = {
+    val beforeLast :: last :: Nil = initialData.takeRight(2)
+    val total = last("Total").toInt
+    val diff = total - beforeLast("Total").toInt
+
+    s"""<div class="col-12 col-lg-6 col-xl"> <div class="card"> <div class="card-body"> <div class="row align-items-center"> <div class="col"> <h6 class="text-uppercase text-muted mb-2">$name</h6> <span class="h2 mb-0 font-weight-bold $className">$total</span> <dev class="badge badge-soft-success mt-n1">较昨日 <span class="badge badge-info">+$diff</span></dev> </div></div></div></div></div>"""
+  }
+
+  private def generateSubTotalCaseEachDayStr(name: String, initialData: immutable.Seq[Map[String, String]]): String = {
     val data = initialData.map(map => {
       val Array(day, month, year) = map("Date").split("/")
       val total = map("Total").toInt
@@ -117,7 +146,7 @@ class Covid extends Module {
     s"""{name:'$name',data:[${data.mkString(",")}]}"""
   }
 
-  private def generateNewCaseStr(initialData: immutable.Seq[Map[String, String]]) = {
+ /* private def generateNewCaseStr(initialData: immutable.Seq[Map[String, String]]) = {
     val endCases = initialData.sliding(2).map { case List(x, y) => {
       val Array(day, month, year) = y("Date").split("/")
       val diff = y("Total").toInt - x("Total").toInt
@@ -131,15 +160,32 @@ class Covid extends Module {
 
     val newCaseList = csvHeadCase :: endCases
     s"""var dailyNewCaseData=[${newCaseList.mkString(",")}]"""
+  }*/
+
+
+  private def calculateEachDayDiffStr(initialData: immutable.Seq[Map[String, String]]): String = {
+    val endCases = initialData.sliding(2).map { case List(x, y) => {
+      val Array(day, month, year) = y("Date").split("/")
+      val diff = y("Total").toInt - x("Total").toInt
+      createNewLine(year, month, day, diff)
+    }
+    }.toList
+
+    val csvHead = initialData.head
+    val Array(day, month, year) = csvHead("Date").split("/")
+    val csvHeadCase = createNewLine(year, month, day, csvHead("Total").toInt)
+
+    val newCaseList = csvHeadCase :: endCases
+    newCaseList.mkString(",")
   }
 
   private def readInitialData(filePath: String): immutable.Seq[Map[String, String]] = {
-    val reader = CSVReader.open(toJFile(filePath))
+    val reader: CSVReader = CSVReader.open(toJFile(filePath))
     reader.allWithHeaders()
   }
 
-  private def createNewLine(year: String, month: String, day: String, diff: Int): String = {
-    s"""[Date.UTC($year, ${month.toInt - 1},$day), $diff]"""
+  private def createNewLine(year: String, month: String, day: String, num: Int): String = {
+    s"""[Date.UTC($year, ${month.toInt - 1},$day), $num]"""
   }
 
 
