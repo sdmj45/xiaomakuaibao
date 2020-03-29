@@ -3,7 +3,7 @@ Highcharts.chart('container-1', {
         enabled: false
     },
     title: {
-        text: '法国肺炎总体数据'
+        text: '新冠肺炎法国总体数据'
     },
     subtitle: {
         text: '来源： 综合数据'
