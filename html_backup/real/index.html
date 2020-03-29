@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>小马快报</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/timeline.css" rel="stylesheet">
+
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/fr/custom/fr-all-mainland.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/data/totalCaseEachDayData.js"></script>
+    <script src="assets/data/diffCaseEachDayData.js"></script>
+    <script src="assets/data/dailyNewCaseData.js"></script>
+    <script src="assets/data/mapData.js"></script>
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container-fluid d-flex">
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a href="index.html"><span>小马快报</span></a></h1>
+        </div>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="#header">主页</a></li>
+                <li><a href="#about">疫情统计</a></li>
+                <li><a href="#food">便民信息</a></li>
+                <li><a href="#services">时事快报</a></li>
+                <li><a href="#faq">专题问答</a></li>
+            </ul>
+        </nav>
+    </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-1">
+                <h1>收集翻译法国本土各大媒体一手新闻头条，实用信息，实时更新</h1>
+                <h2>为您在法国的工作及生活带来便利</h2>
+            </div>
+            <div class="col-lg-6 order-2 order-lg-2 hero-img">
+                <div class="row" id="summary"></div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Hero -->
+<main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+            <div id="container-1" style="width:100%; height:400px;"></div>
+            <div id="container-2" style="width:100%; height:400px;"></div>
+            <div id="container-3" style="width:100%; height:400px;"></div>
+            <div id="container-4" style="width:100%; height:400px;"></div>
+        </div>
+    </section><!-- End About Section -->
+
+    <section id="food" class="faq section-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <h2>疫情期间法国营业场所分布图</h2>
+                    <iframe frameborder="0" style="border:0; width: 100%; height: 600px;" allowfullscree
+                            src="https://www.google.com/maps/d/embed?mid=1v9Gea0JkXhc2S8yst-y8nLTrYEFqQd-M"></iframe>
+                </div>
+            </div>
+             <div class="row justify-content-center">
+                 <div class="col-lg-12">
+                     <h2>疫情期间巴黎开放市场分布图</h2>
+                     <iframe frameborder="0" style="border:0; width: 100%; height: 600px;" allowfullscree
+                             src="https://www.google.com/maps/d/u/0/embed?mid=1Dia90uQjDq6gAYrZYKz2xN-ZTMosIDOq"></iframe>
+                 </div>
+             </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <h2>疫情期间巴黎可送餐商家分布图</h2>
+                    <iframe frameborder="0" style="border:0; width: 100%; height: 600px;" allowfullscreen
+                            src="https://www.google.com/maps/d/u/0/embed?mid=1SQA9ycAN5Lb9FQKEeheScDdSNFBF2hrU"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h4>最新时事新闻</h4>
+                <ul class="timeline"></ul>
+            </div>
+        </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq section-bg">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+                <p>2019冠状病毒（COVID-19）专题问答</p>
+            </div>
+
+            <ul class="faq-list">
+                <li data-aos="fade-up" data-aos-delay="100">
+                    <a data-toggle="collapse" class="" href="#faq1">2019冠状病毒有何症状？ <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq1" class="collapse show" data-parent=".faq-list">
+                        <p>
+                            2019冠状病毒最常见症状是发热、乏力和干咳。有些患者可能会有疼痛、鼻塞、流涕、咽痛或腹泻等症状。这些症状往往轻微，且逐渐出现。有些感染者并无任何症状，也无不适感。大多数感染者（约80%）无需特别治疗即可康复。大约六分之一感染者病情严重，呼吸困难。老人以及那些有基础性疾病（如高血压、心脏病或糖尿病）的人可能会患严重疾病。发热、咳嗽和呼吸困难者应就医。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="200">
+                    <a data-toggle="collapse" href="#faq2" class="collapsed">如何佩戴、使用、取下和处置口罩 <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq2" class="collapse" data-parent=".faq-list">
+                        <p>
+                            1. 在拿口罩前，用含酒精成分的免洗洗手液或用肥皂和清水洗手。<br>
+                            2. 拿起口罩，检查有无撕裂或破损。<br>
+                            3. 确定哪一边向上（有金属片的一边向上）。<br>
+                            4. 看清口罩正反面，口罩深色面朝外。<br>
+                            5. 将口罩戴在脸上。捏紧金属鼻夹或口罩硬边，使其贴紧鼻子。<br>
+                            6. 下拉口罩底部，使口罩覆盖口和下颌。<br>
+                            7. 使用后取下口罩；从耳后移除线绳，取下口罩后，注意不让口罩触碰脸部和衣服，以免接触可能被污染的口罩表面。<br>
+                            8. 用后立即将口罩丢进封闭的垃圾桶。<br>
+                            9. 触摸或丢弃口罩后，采取手卫生措施。使用含酒精成分的免洗洗手液洗手，如果手明显脏污，则用肥皂和清水洗手。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="300">
+                    <a data-toggle="collapse" href="#faq3" class="collapsed">抗生素能有效预防和治疗2019冠状病毒吗？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq3" class="collapse" data-parent=".faq-list">
+                        <p>
+                            不能。抗生素对病毒不起作用，只对细菌感染有作用。2019冠状病毒由病毒导致，因此，使用抗生素并无效果。不应使用抗生素预防或治疗2019冠状病毒。只有在按医嘱治疗细菌感染的情况下才应使用抗生素。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="400">
+                    <a data-toggle="collapse" href="#faq4" class="collapsed">COVID-19和流感病毒有何相似之处？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq4" class="collapse" data-parent=".faq-list">
+                        <p>
+                            首先，COVID-19病毒和流感病毒会导致相似的疾病症状。它们都引起呼吸系统疾病，有的患者无症状或属轻症，有的则患重症甚至死亡。<br>
+
+                            其次，这两种病毒均通过接触、飞沫和污染物传播。因此，可以采取同样的公共卫生措施，例如保持良好的手卫生习惯和呼吸礼仪（咳嗽时屈肘遮掩口鼻或使用纸巾，并立即适当处置用过的纸巾）。这些措施对于预防感染很重要。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#faq5" class="collapsed">如果没有清水和洗手液洗手，可否用酒精搓手液代替？ <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq5" class="collapse" data-parent=".faq-list">
+                        <p>
+                            当你双手没有明显污垢时，用70至80%酒精搓手液搓手，可以有效预防经双手散播的传染病。<br>
+
+                            搓手的技巧跟洗手一样，用足够的份量，即大约3至5毫升的酒精搓手液，将双手的所有表面复盖。我们要搓手掌、手背、指隙、指背、拇指、指尖及手腕，最少20秒，直至双手干透。为了达至最佳效果，应让酒精自然挥发，不要用纸巾抹干。使用前要看清楚酒精搓手液的有效日期。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="600">
+                    <a data-toggle="collapse" href="#faq6" class="collapsed">2019冠状病毒在天气回暖后会自然消失吗？ <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq6" class="collapse" data-parent=".faq-list">
+                        <p>
+                            研究发现，冠状病毒通常在较低温度及干燥的环境中存活更长的时间并保持更长的活跃性。
+                        </p>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </section><!-- End F.A.Q Section -->
+
+</main><!-- End #main -->
+
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/venobox/venobox.min.js"></script>
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/totalCaseEachDay.js"></script>
+<script src="assets/js/diffCaseEachDay.js"></script>
+<script src="assets/js/dailyNewCase.js"></script>
+<script src="assets/js/map.js"></script>
+<script src="assets/js/news.js"></script>
+<script src="assets/js/summary.js"></script>
+</body>
+
+</html>
