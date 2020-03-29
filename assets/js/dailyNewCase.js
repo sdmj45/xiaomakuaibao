@@ -1,4 +1,4 @@
-Highcharts.chart('container-2', {
+Highcharts.chart('container-3', {
 			credits:{
 				enabled: false
 			},
@@ -9,7 +9,7 @@ Highcharts.chart('container-2', {
 			  enabled: false
 		    },
 			title: {
-				text: '法国肺炎每日新增数'
+				text: '法国肺炎每日确诊新增数'
 			},
 			subtitle: {
 				text: '来源：综合数据'

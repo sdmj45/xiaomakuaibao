@@ -1,9 +1,9 @@
-Highcharts.chart('container-1', {
+Highcharts.chart('container-2', {
     credits:{
         enabled: false
     },
     title: {
-        text: '法国肺炎总体数据'
+        text: '法国肺炎每日变化'
     },
     subtitle: {
         text: '来源： 综合数据'
@@ -34,7 +34,7 @@ Highcharts.chart('container-1', {
         align: 'right',
         verticalAlign: 'middle'
     },
-    series: totalRecapData,
+    series: diffRecapData,
     responsive: {
         rules: [{
             condition: {
