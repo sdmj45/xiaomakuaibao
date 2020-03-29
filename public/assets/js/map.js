@@ -1,5 +1,5 @@
 // Create the chart
-	Highcharts.mapChart('container-3', {
+	Highcharts.mapChart('container-4', {
 		credits:{
 			enabled: false
 		},
