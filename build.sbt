@@ -1,6 +1,6 @@
 import Dependencies._
 
-ThisBuild / scalaVersion := "2.11.12"
+ThisBuild / scalaVersion := Versions.scala
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "com.mj"
 ThisBuild / organizationName := "xiaomakuaibao"
@@ -15,11 +15,13 @@ lazy val root = (project in file("."))
   .settings(
     name := "back",
     libraryDependencies ++=
-      scalaTest ++
+      scalaLang ++
+        scalaTest ++
         betterfile ++
         sttp ++
         json4s ++
         cats ++
         akka ++
-        scalaCsv
+        scalaCsv ++
+        spark
   )

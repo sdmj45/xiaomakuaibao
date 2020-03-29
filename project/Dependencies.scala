@@ -21,9 +21,19 @@ object Dependencies {
   lazy val cats = Seq("org.typelevel" %% "cats-core" % "2.0.0")
   lazy val akka = Seq("com.typesafe.akka" %% "akka-actor-typed" % "2.5.21")
   lazy val scalaCsv = Seq("com.github.tototoshi" %% "scala-csv" % "1.3.6")
+  lazy val scalaLang = Seq(
+    "org.scala-lang" % "scala-library" % Versions.scala,
+    "org.scala-lang" % "scala-xml" % "2.11.0-M4"
+  )
+  lazy val spark = Seq(
+    "org.apache.spark" %% "spark-core" % Versions.spark,
+    "org.apache.spark" %% "spark-sql" % Versions.spark
+  )
 }
 
 object Versions {
   lazy val json4s: String = "3.7.0-M2"
   lazy val jackson: String = "2.10.3"
+  lazy val spark: String = "2.4.5"
+  lazy val scala: String = "2.11.12"
 }
