@@ -41,7 +41,7 @@ class TranslationApi {
 
     val response = basicRequest
       .post(
-        uri"https://translate.yandex.net/api/v1/tr.json/translate?id=ce90dca4.5e7773e6.c35a6fac-0-0&srv=tr-text&lang=fr-zh&reason=auto&format=text"
+        uri"https://translate.yandex.net/api/v1/tr.json/translate?id=1ce4d6b5.5e80b325.8c01c7b8-0-0&srv=tr-text&lang=fr-zh&reason=auto&format=text"
       )
       .body(s"text=$body")
       .header("Content-Type", "application/x-www-form-urlencoded")
@@ -61,8 +61,7 @@ class TranslationApi {
        |  <h5 class="text-primary">${newArticle.title}</h5>
        |  <p>${newArticle.description}</p>
        |  <p>${newArticle.content}</p>
-       |  <img src="${newArticle.urlToImage}" alt="${newArticle.title}" class="img-thumbnail">
-       |  <a href="${newArticle.url}" target="_blank">原文链接：${newArticle.url}</a>
+       |  <a href="${newArticle.url}" target="_blank">查看原文点击此处</a>
        |  <p class="text-muted">来源：${newArticle.author}</p>
        |""".stripMargin
   }

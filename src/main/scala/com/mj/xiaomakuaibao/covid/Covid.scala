@@ -46,24 +46,24 @@ class Covid extends Module {
     } {
       downloadFiles
       overwriteToFile(lastUpdatedFile, Some(convertLocalDatetimeToStr(lastCommitTime)))
-      updateJsDataFiles
+      updateDataFiles
     }
     println("Covid ok !")
   }
 
-  private def updateJsDataFiles: Option[files.File] = {
+  private def updateDataFiles: Option[files.File] = {
     val confirmedInitialData = readInitialData("data/data/confirmed.csv")
     val deathsInitialData = readInitialData("data/data/deaths.csv")
     val recoveredInitialData = readInitialData("data/data/recovered.csv")
 
-    val newCaseStr: String = generateNewCaseStr(confirmedInitialData)
-    overwriteToFile("public/assets/data/dailyNewCase_data.js", Some(newCaseStr))
+    val totalCaseEachDayStr: String = generateAllTotalCaseStr(Seq(("累计确诊", confirmedInitialData), ("累计死亡", deathsInitialData), ("累计治愈", recoveredInitialData)))
+    overwriteToFile("public/assets/data/totalCaseEachDayData.js", Some(totalCaseEachDayStr))
 
-    val totalCaseStr: String = generateAllTotalCaseStr(Seq(("累计确诊", confirmedInitialData), ("累计死亡", deathsInitialData), ("累计治愈", recoveredInitialData)))
-    overwriteToFile("public/assets/data/totalStat_data.js", Some(totalCaseStr))
+    val newCaseStr: String = generateNewCaseStr(confirmedInitialData)
+    overwriteToFile("public/assets/data/dailyNewCaseData.js", Some(newCaseStr))
 
     val mapStr: String = generateMapStr(confirmedInitialData)
-    overwriteToFile("public/assets/data/map_data.js", Some(mapStr))
+    overwriteToFile("public/assets/data/mapData.js", Some(mapStr))
   }
 
   private def ifToDownload(lastCommitTime: LocalDateTime, lastUpdatedTime: LocalDateTime): Boolean = lastCommitTime.isAfter(lastUpdatedTime)
