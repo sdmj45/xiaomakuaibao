@@ -1,310 +1,791 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Password Protected Page</title>
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        #dialogText {
-            padding: 10px 30px;
-            color: white;
-            background-color: #333333;
-        }
-        
-        #dialogWrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: table;
-            background-color: #EEEEEE;
-        }
-        
-        #dialogWrapCell {
-            display: table-cell;
-            text-align: center;
-            vertical-align: middle;
-        }
-        
-        #mainDialog {
-            max-width: 400px;
-            margin: 5px;
-            border: solid #AAAAAA 1px;
-            border-radius: 10px;
-            box-shadow: 3px 3px 5px 3px #AAAAAA;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #FFFFFF;
-            overflow: hidden;
-            text-align: left;
-        }
-        #passArea {
-            padding: 20px 30px;
-            background-color: white;
-        }
-        #passArea > * {
-            margin: 5px auto;
-        }
-        #pass {
-            width: 100%;
-            height: 40px;
-            font-size: 30px;
-        }
-        
-        #messageWrapper {
-            float: left;
-            vertical-align: middle;
-            line-height: 30px;
-        }
-        
-        .notifyText {
-            display: none;
-        }
-        
-        #invalidPass {
-            color: red;
-        }
-        
-        #success {
-            color: green;
-        }
-        
-        #submitPass {
-            font-size: 20px;
-            border-radius: 5px;
-            background-color: #E7E7E7;
-            border: solid gray 1px;
-            float: right;
-        }
-        #contentFrame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-  </head>
-  <body>
-    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
-    <div id="dialogWrap">
-        <div id="dialogWrapCell">
-            <div id="mainDialog">
-                <div id="dialogText">This page is password protected.</div>
-                <div id="passArea">
-                    <p id="passwordPrompt">Password</p>
-                    <input id="pass" type="password" name="pass">
-                    <div>
-                        <span id="messageWrapper">
-                            <span id="invalidPass" class="notifyText">Sorry, please try again.</span>
-                            <span id="success" class="notifyText">Success!</span>
-                            &nbsp;
-                        </span>
-                        <button id="submitPass" type="button">Submit</button>
-                        <div style="clear: both;"></div>
-                    </div>
-                </div>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>小马快报</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/timeline.css" rel="stylesheet">
+
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/fr/custom/fr-all-mainland.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/data/totalCaseEachDayData.js"></script>
+    <script src="assets/data/diffCaseEachDayData.js"></script>
+    <script src="assets/data/dailyNewCaseData.js"></script>
+    <script src="assets/data/mapData.js"></script>
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container-fluid d-flex">
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a href="index.html"><span>小马快报</span></a></h1>
+        </div>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="#header">主页</a></li>
+                <li><a href="#about">疫情统计</a></li>
+                <li><a href="#food">便民信息</a></li>
+                <li><a href="#services">时事快报</a></li>
+                <li><a href="#rumor">谣言粉碎</a></li>
+                <li><a href="#faq">专题问答</a></li>
+            </ul>
+        </nav>
+    </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-1">
+                <h1>收集翻译法国本土各大媒体一手新闻头条，实用信息，实时更新</h1>
+                <h2>为您在法国的工作及生活带来便利</h2>
+            </div>
+            <div class="col-lg-6 order-2 order-lg-2 hero-img">
+                <div class="row" id="summary"></div>
             </div>
         </div>
     </div>
-    <script>
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-var CryptoJS=CryptoJS||function(u,p){var d={},l=d.lib={},s=function(){},t=l.Base={extend:function(a){s.prototype=this;var c=new s;a&&c.mixIn(a);c.hasOwnProperty("init")||(c.init=function(){c.$super.init.apply(this,arguments)});c.init.prototype=c;c.$super=this;return c},create:function(){var a=this.extend();a.init.apply(a,arguments);return a},init:function(){},mixIn:function(a){for(var c in a)a.hasOwnProperty(c)&&(this[c]=a[c]);a.hasOwnProperty("toString")&&(this.toString=a.toString)},clone:function(){return this.init.prototype.extend(this)}},
-r=l.WordArray=t.extend({init:function(a,c){a=this.words=a||[];this.sigBytes=c!=p?c:4*a.length},toString:function(a){return(a||v).stringify(this)},concat:function(a){var c=this.words,e=a.words,j=this.sigBytes;a=a.sigBytes;this.clamp();if(j%4)for(var k=0;k<a;k++)c[j+k>>>2]|=(e[k>>>2]>>>24-8*(k%4)&255)<<24-8*((j+k)%4);else if(65535<e.length)for(k=0;k<a;k+=4)c[j+k>>>2]=e[k>>>2];else c.push.apply(c,e);this.sigBytes+=a;return this},clamp:function(){var a=this.words,c=this.sigBytes;a[c>>>2]&=4294967295<<
-32-8*(c%4);a.length=u.ceil(c/4)},clone:function(){var a=t.clone.call(this);a.words=this.words.slice(0);return a},random:function(a){for(var c=[],e=0;e<a;e+=4)c.push(4294967296*u.random()|0);return new r.init(c,a)}}),w=d.enc={},v=w.Hex={stringify:function(a){var c=a.words;a=a.sigBytes;for(var e=[],j=0;j<a;j++){var k=c[j>>>2]>>>24-8*(j%4)&255;e.push((k>>>4).toString(16));e.push((k&15).toString(16))}return e.join("")},parse:function(a){for(var c=a.length,e=[],j=0;j<c;j+=2)e[j>>>3]|=parseInt(a.substr(j,
-2),16)<<24-4*(j%8);return new r.init(e,c/2)}},b=w.Latin1={stringify:function(a){var c=a.words;a=a.sigBytes;for(var e=[],j=0;j<a;j++)e.push(String.fromCharCode(c[j>>>2]>>>24-8*(j%4)&255));return e.join("")},parse:function(a){for(var c=a.length,e=[],j=0;j<c;j++)e[j>>>2]|=(a.charCodeAt(j)&255)<<24-8*(j%4);return new r.init(e,c)}},x=w.Utf8={stringify:function(a){try{return decodeURIComponent(escape(b.stringify(a)))}catch(c){throw Error("Malformed UTF-8 data");}},parse:function(a){return b.parse(unescape(encodeURIComponent(a)))}},
-q=l.BufferedBlockAlgorithm=t.extend({reset:function(){this._data=new r.init;this._nDataBytes=0},_append:function(a){"string"==typeof a&&(a=x.parse(a));this._data.concat(a);this._nDataBytes+=a.sigBytes},_process:function(a){var c=this._data,e=c.words,j=c.sigBytes,k=this.blockSize,b=j/(4*k),b=a?u.ceil(b):u.max((b|0)-this._minBufferSize,0);a=b*k;j=u.min(4*a,j);if(a){for(var q=0;q<a;q+=k)this._doProcessBlock(e,q);q=e.splice(0,a);c.sigBytes-=j}return new r.init(q,j)},clone:function(){var a=t.clone.call(this);
-a._data=this._data.clone();return a},_minBufferSize:0});l.Hasher=q.extend({cfg:t.extend(),init:function(a){this.cfg=this.cfg.extend(a);this.reset()},reset:function(){q.reset.call(this);this._doReset()},update:function(a){this._append(a);this._process();return this},finalize:function(a){a&&this._append(a);return this._doFinalize()},blockSize:16,_createHelper:function(a){return function(b,e){return(new a.init(e)).finalize(b)}},_createHmacHelper:function(a){return function(b,e){return(new n.HMAC.init(a,
-e)).finalize(b)}}});var n=d.algo={};return d}(Math);
-(function(){var u=CryptoJS,p=u.lib.WordArray;u.enc.Base64={stringify:function(d){var l=d.words,p=d.sigBytes,t=this._map;d.clamp();d=[];for(var r=0;r<p;r+=3)for(var w=(l[r>>>2]>>>24-8*(r%4)&255)<<16|(l[r+1>>>2]>>>24-8*((r+1)%4)&255)<<8|l[r+2>>>2]>>>24-8*((r+2)%4)&255,v=0;4>v&&r+0.75*v<p;v++)d.push(t.charAt(w>>>6*(3-v)&63));if(l=t.charAt(64))for(;d.length%4;)d.push(l);return d.join("")},parse:function(d){var l=d.length,s=this._map,t=s.charAt(64);t&&(t=d.indexOf(t),-1!=t&&(l=t));for(var t=[],r=0,w=0;w<
-l;w++)if(w%4){var v=s.indexOf(d.charAt(w-1))<<2*(w%4),b=s.indexOf(d.charAt(w))>>>6-2*(w%4);t[r>>>2]|=(v|b)<<24-8*(r%4);r++}return p.create(t,r)},_map:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="}})();
-(function(u){function p(b,n,a,c,e,j,k){b=b+(n&a|~n&c)+e+k;return(b<<j|b>>>32-j)+n}function d(b,n,a,c,e,j,k){b=b+(n&c|a&~c)+e+k;return(b<<j|b>>>32-j)+n}function l(b,n,a,c,e,j,k){b=b+(n^a^c)+e+k;return(b<<j|b>>>32-j)+n}function s(b,n,a,c,e,j,k){b=b+(a^(n|~c))+e+k;return(b<<j|b>>>32-j)+n}for(var t=CryptoJS,r=t.lib,w=r.WordArray,v=r.Hasher,r=t.algo,b=[],x=0;64>x;x++)b[x]=4294967296*u.abs(u.sin(x+1))|0;r=r.MD5=v.extend({_doReset:function(){this._hash=new w.init([1732584193,4023233417,2562383102,271733878])},
-_doProcessBlock:function(q,n){for(var a=0;16>a;a++){var c=n+a,e=q[c];q[c]=(e<<8|e>>>24)&16711935|(e<<24|e>>>8)&4278255360}var a=this._hash.words,c=q[n+0],e=q[n+1],j=q[n+2],k=q[n+3],z=q[n+4],r=q[n+5],t=q[n+6],w=q[n+7],v=q[n+8],A=q[n+9],B=q[n+10],C=q[n+11],u=q[n+12],D=q[n+13],E=q[n+14],x=q[n+15],f=a[0],m=a[1],g=a[2],h=a[3],f=p(f,m,g,h,c,7,b[0]),h=p(h,f,m,g,e,12,b[1]),g=p(g,h,f,m,j,17,b[2]),m=p(m,g,h,f,k,22,b[3]),f=p(f,m,g,h,z,7,b[4]),h=p(h,f,m,g,r,12,b[5]),g=p(g,h,f,m,t,17,b[6]),m=p(m,g,h,f,w,22,b[7]),
-f=p(f,m,g,h,v,7,b[8]),h=p(h,f,m,g,A,12,b[9]),g=p(g,h,f,m,B,17,b[10]),m=p(m,g,h,f,C,22,b[11]),f=p(f,m,g,h,u,7,b[12]),h=p(h,f,m,g,D,12,b[13]),g=p(g,h,f,m,E,17,b[14]),m=p(m,g,h,f,x,22,b[15]),f=d(f,m,g,h,e,5,b[16]),h=d(h,f,m,g,t,9,b[17]),g=d(g,h,f,m,C,14,b[18]),m=d(m,g,h,f,c,20,b[19]),f=d(f,m,g,h,r,5,b[20]),h=d(h,f,m,g,B,9,b[21]),g=d(g,h,f,m,x,14,b[22]),m=d(m,g,h,f,z,20,b[23]),f=d(f,m,g,h,A,5,b[24]),h=d(h,f,m,g,E,9,b[25]),g=d(g,h,f,m,k,14,b[26]),m=d(m,g,h,f,v,20,b[27]),f=d(f,m,g,h,D,5,b[28]),h=d(h,f,
-m,g,j,9,b[29]),g=d(g,h,f,m,w,14,b[30]),m=d(m,g,h,f,u,20,b[31]),f=l(f,m,g,h,r,4,b[32]),h=l(h,f,m,g,v,11,b[33]),g=l(g,h,f,m,C,16,b[34]),m=l(m,g,h,f,E,23,b[35]),f=l(f,m,g,h,e,4,b[36]),h=l(h,f,m,g,z,11,b[37]),g=l(g,h,f,m,w,16,b[38]),m=l(m,g,h,f,B,23,b[39]),f=l(f,m,g,h,D,4,b[40]),h=l(h,f,m,g,c,11,b[41]),g=l(g,h,f,m,k,16,b[42]),m=l(m,g,h,f,t,23,b[43]),f=l(f,m,g,h,A,4,b[44]),h=l(h,f,m,g,u,11,b[45]),g=l(g,h,f,m,x,16,b[46]),m=l(m,g,h,f,j,23,b[47]),f=s(f,m,g,h,c,6,b[48]),h=s(h,f,m,g,w,10,b[49]),g=s(g,h,f,m,
-E,15,b[50]),m=s(m,g,h,f,r,21,b[51]),f=s(f,m,g,h,u,6,b[52]),h=s(h,f,m,g,k,10,b[53]),g=s(g,h,f,m,B,15,b[54]),m=s(m,g,h,f,e,21,b[55]),f=s(f,m,g,h,v,6,b[56]),h=s(h,f,m,g,x,10,b[57]),g=s(g,h,f,m,t,15,b[58]),m=s(m,g,h,f,D,21,b[59]),f=s(f,m,g,h,z,6,b[60]),h=s(h,f,m,g,C,10,b[61]),g=s(g,h,f,m,j,15,b[62]),m=s(m,g,h,f,A,21,b[63]);a[0]=a[0]+f|0;a[1]=a[1]+m|0;a[2]=a[2]+g|0;a[3]=a[3]+h|0},_doFinalize:function(){var b=this._data,n=b.words,a=8*this._nDataBytes,c=8*b.sigBytes;n[c>>>5]|=128<<24-c%32;var e=u.floor(a/
-4294967296);n[(c+64>>>9<<4)+15]=(e<<8|e>>>24)&16711935|(e<<24|e>>>8)&4278255360;n[(c+64>>>9<<4)+14]=(a<<8|a>>>24)&16711935|(a<<24|a>>>8)&4278255360;b.sigBytes=4*(n.length+1);this._process();b=this._hash;n=b.words;for(a=0;4>a;a++)c=n[a],n[a]=(c<<8|c>>>24)&16711935|(c<<24|c>>>8)&4278255360;return b},clone:function(){var b=v.clone.call(this);b._hash=this._hash.clone();return b}});t.MD5=v._createHelper(r);t.HmacMD5=v._createHmacHelper(r)})(Math);
-(function(){var u=CryptoJS,p=u.lib,d=p.Base,l=p.WordArray,p=u.algo,s=p.EvpKDF=d.extend({cfg:d.extend({keySize:4,hasher:p.MD5,iterations:1}),init:function(d){this.cfg=this.cfg.extend(d)},compute:function(d,r){for(var p=this.cfg,s=p.hasher.create(),b=l.create(),u=b.words,q=p.keySize,p=p.iterations;u.length<q;){n&&s.update(n);var n=s.update(d).finalize(r);s.reset();for(var a=1;a<p;a++)n=s.finalize(n),s.reset();b.concat(n)}b.sigBytes=4*q;return b}});u.EvpKDF=function(d,l,p){return s.create(p).compute(d,
-l)}})();
-CryptoJS.lib.Cipher||function(u){var p=CryptoJS,d=p.lib,l=d.Base,s=d.WordArray,t=d.BufferedBlockAlgorithm,r=p.enc.Base64,w=p.algo.EvpKDF,v=d.Cipher=t.extend({cfg:l.extend(),createEncryptor:function(e,a){return this.create(this._ENC_XFORM_MODE,e,a)},createDecryptor:function(e,a){return this.create(this._DEC_XFORM_MODE,e,a)},init:function(e,a,b){this.cfg=this.cfg.extend(b);this._xformMode=e;this._key=a;this.reset()},reset:function(){t.reset.call(this);this._doReset()},process:function(e){this._append(e);return this._process()},
-finalize:function(e){e&&this._append(e);return this._doFinalize()},keySize:4,ivSize:4,_ENC_XFORM_MODE:1,_DEC_XFORM_MODE:2,_createHelper:function(e){return{encrypt:function(b,k,d){return("string"==typeof k?c:a).encrypt(e,b,k,d)},decrypt:function(b,k,d){return("string"==typeof k?c:a).decrypt(e,b,k,d)}}}});d.StreamCipher=v.extend({_doFinalize:function(){return this._process(!0)},blockSize:1});var b=p.mode={},x=function(e,a,b){var c=this._iv;c?this._iv=u:c=this._prevBlock;for(var d=0;d<b;d++)e[a+d]^=
-c[d]},q=(d.BlockCipherMode=l.extend({createEncryptor:function(e,a){return this.Encryptor.create(e,a)},createDecryptor:function(e,a){return this.Decryptor.create(e,a)},init:function(e,a){this._cipher=e;this._iv=a}})).extend();q.Encryptor=q.extend({processBlock:function(e,a){var b=this._cipher,c=b.blockSize;x.call(this,e,a,c);b.encryptBlock(e,a);this._prevBlock=e.slice(a,a+c)}});q.Decryptor=q.extend({processBlock:function(e,a){var b=this._cipher,c=b.blockSize,d=e.slice(a,a+c);b.decryptBlock(e,a);x.call(this,
-e,a,c);this._prevBlock=d}});b=b.CBC=q;q=(p.pad={}).Pkcs7={pad:function(a,b){for(var c=4*b,c=c-a.sigBytes%c,d=c<<24|c<<16|c<<8|c,l=[],n=0;n<c;n+=4)l.push(d);c=s.create(l,c);a.concat(c)},unpad:function(a){a.sigBytes-=a.words[a.sigBytes-1>>>2]&255}};d.BlockCipher=v.extend({cfg:v.cfg.extend({mode:b,padding:q}),reset:function(){v.reset.call(this);var a=this.cfg,b=a.iv,a=a.mode;if(this._xformMode==this._ENC_XFORM_MODE)var c=a.createEncryptor;else c=a.createDecryptor,this._minBufferSize=1;this._mode=c.call(a,
-this,b&&b.words)},_doProcessBlock:function(a,b){this._mode.processBlock(a,b)},_doFinalize:function(){var a=this.cfg.padding;if(this._xformMode==this._ENC_XFORM_MODE){a.pad(this._data,this.blockSize);var b=this._process(!0)}else b=this._process(!0),a.unpad(b);return b},blockSize:4});var n=d.CipherParams=l.extend({init:function(a){this.mixIn(a)},toString:function(a){return(a||this.formatter).stringify(this)}}),b=(p.format={}).OpenSSL={stringify:function(a){var b=a.ciphertext;a=a.salt;return(a?s.create([1398893684,
-1701076831]).concat(a).concat(b):b).toString(r)},parse:function(a){a=r.parse(a);var b=a.words;if(1398893684==b[0]&&1701076831==b[1]){var c=s.create(b.slice(2,4));b.splice(0,4);a.sigBytes-=16}return n.create({ciphertext:a,salt:c})}},a=d.SerializableCipher=l.extend({cfg:l.extend({format:b}),encrypt:function(a,b,c,d){d=this.cfg.extend(d);var l=a.createEncryptor(c,d);b=l.finalize(b);l=l.cfg;return n.create({ciphertext:b,key:c,iv:l.iv,algorithm:a,mode:l.mode,padding:l.padding,blockSize:a.blockSize,formatter:d.format})},
-decrypt:function(a,b,c,d){d=this.cfg.extend(d);b=this._parse(b,d.format);return a.createDecryptor(c,d).finalize(b.ciphertext)},_parse:function(a,b){return"string"==typeof a?b.parse(a,this):a}}),p=(p.kdf={}).OpenSSL={execute:function(a,b,c,d){d||(d=s.random(8));a=w.create({keySize:b+c}).compute(a,d);c=s.create(a.words.slice(b),4*c);a.sigBytes=4*b;return n.create({key:a,iv:c,salt:d})}},c=d.PasswordBasedCipher=a.extend({cfg:a.cfg.extend({kdf:p}),encrypt:function(b,c,d,l){l=this.cfg.extend(l);d=l.kdf.execute(d,
-b.keySize,b.ivSize);l.iv=d.iv;b=a.encrypt.call(this,b,c,d.key,l);b.mixIn(d);return b},decrypt:function(b,c,d,l){l=this.cfg.extend(l);c=this._parse(c,l.format);d=l.kdf.execute(d,b.keySize,b.ivSize,c.salt);l.iv=d.iv;return a.decrypt.call(this,b,c,d.key,l)}})}();
-(function(){for(var u=CryptoJS,p=u.lib.BlockCipher,d=u.algo,l=[],s=[],t=[],r=[],w=[],v=[],b=[],x=[],q=[],n=[],a=[],c=0;256>c;c++)a[c]=128>c?c<<1:c<<1^283;for(var e=0,j=0,c=0;256>c;c++){var k=j^j<<1^j<<2^j<<3^j<<4,k=k>>>8^k&255^99;l[e]=k;s[k]=e;var z=a[e],F=a[z],G=a[F],y=257*a[k]^16843008*k;t[e]=y<<24|y>>>8;r[e]=y<<16|y>>>16;w[e]=y<<8|y>>>24;v[e]=y;y=16843009*G^65537*F^257*z^16843008*e;b[k]=y<<24|y>>>8;x[k]=y<<16|y>>>16;q[k]=y<<8|y>>>24;n[k]=y;e?(e=z^a[a[a[G^z]]],j^=a[a[j]]):e=j=1}var H=[0,1,2,4,8,
-16,32,64,128,27,54],d=d.AES=p.extend({_doReset:function(){for(var a=this._key,c=a.words,d=a.sigBytes/4,a=4*((this._nRounds=d+6)+1),e=this._keySchedule=[],j=0;j<a;j++)if(j<d)e[j]=c[j];else{var k=e[j-1];j%d?6<d&&4==j%d&&(k=l[k>>>24]<<24|l[k>>>16&255]<<16|l[k>>>8&255]<<8|l[k&255]):(k=k<<8|k>>>24,k=l[k>>>24]<<24|l[k>>>16&255]<<16|l[k>>>8&255]<<8|l[k&255],k^=H[j/d|0]<<24);e[j]=e[j-d]^k}c=this._invKeySchedule=[];for(d=0;d<a;d++)j=a-d,k=d%4?e[j]:e[j-4],c[d]=4>d||4>=j?k:b[l[k>>>24]]^x[l[k>>>16&255]]^q[l[k>>>
-8&255]]^n[l[k&255]]},encryptBlock:function(a,b){this._doCryptBlock(a,b,this._keySchedule,t,r,w,v,l)},decryptBlock:function(a,c){var d=a[c+1];a[c+1]=a[c+3];a[c+3]=d;this._doCryptBlock(a,c,this._invKeySchedule,b,x,q,n,s);d=a[c+1];a[c+1]=a[c+3];a[c+3]=d},_doCryptBlock:function(a,b,c,d,e,j,l,f){for(var m=this._nRounds,g=a[b]^c[0],h=a[b+1]^c[1],k=a[b+2]^c[2],n=a[b+3]^c[3],p=4,r=1;r<m;r++)var q=d[g>>>24]^e[h>>>16&255]^j[k>>>8&255]^l[n&255]^c[p++],s=d[h>>>24]^e[k>>>16&255]^j[n>>>8&255]^l[g&255]^c[p++],t=
-d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j[h>>>8&255]^l[k&255]^c[p++],g=q,h=s,k=t;q=(f[g>>>24]<<24|f[h>>>16&255]<<16|f[k>>>8&255]<<8|f[n&255])^c[p++];s=(f[h>>>24]<<24|f[k>>>16&255]<<16|f[n>>>8&255]<<8|f[g&255])^c[p++];t=(f[k>>>24]<<24|f[n>>>16&255]<<16|f[g>>>8&255]<<8|f[h&255])^c[p++];n=(f[n>>>24]<<24|f[g>>>16&255]<<16|f[h>>>8&255]<<8|f[k&255])^c[p++];a[b]=q;a[b+1]=s;a[b+2]=t;a[b+3]=n},keySize:8});u.AES=p._createHelper(d)})();
-    </script>
-    <script>
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-var CryptoJS=CryptoJS||function(g,j){var e={},d=e.lib={},m=function(){},n=d.Base={extend:function(a){m.prototype=this;var c=new m;a&&c.mixIn(a);c.hasOwnProperty("init")||(c.init=function(){c.$super.init.apply(this,arguments)});c.init.prototype=c;c.$super=this;return c},create:function(){var a=this.extend();a.init.apply(a,arguments);return a},init:function(){},mixIn:function(a){for(var c in a)a.hasOwnProperty(c)&&(this[c]=a[c]);a.hasOwnProperty("toString")&&(this.toString=a.toString)},clone:function(){return this.init.prototype.extend(this)}},
-q=d.WordArray=n.extend({init:function(a,c){a=this.words=a||[];this.sigBytes=c!=j?c:4*a.length},toString:function(a){return(a||l).stringify(this)},concat:function(a){var c=this.words,p=a.words,f=this.sigBytes;a=a.sigBytes;this.clamp();if(f%4)for(var b=0;b<a;b++)c[f+b>>>2]|=(p[b>>>2]>>>24-8*(b%4)&255)<<24-8*((f+b)%4);else if(65535<p.length)for(b=0;b<a;b+=4)c[f+b>>>2]=p[b>>>2];else c.push.apply(c,p);this.sigBytes+=a;return this},clamp:function(){var a=this.words,c=this.sigBytes;a[c>>>2]&=4294967295<<
-32-8*(c%4);a.length=g.ceil(c/4)},clone:function(){var a=n.clone.call(this);a.words=this.words.slice(0);return a},random:function(a){for(var c=[],b=0;b<a;b+=4)c.push(4294967296*g.random()|0);return new q.init(c,a)}}),b=e.enc={},l=b.Hex={stringify:function(a){var c=a.words;a=a.sigBytes;for(var b=[],f=0;f<a;f++){var d=c[f>>>2]>>>24-8*(f%4)&255;b.push((d>>>4).toString(16));b.push((d&15).toString(16))}return b.join("")},parse:function(a){for(var c=a.length,b=[],f=0;f<c;f+=2)b[f>>>3]|=parseInt(a.substr(f,
-2),16)<<24-4*(f%8);return new q.init(b,c/2)}},k=b.Latin1={stringify:function(a){var c=a.words;a=a.sigBytes;for(var b=[],f=0;f<a;f++)b.push(String.fromCharCode(c[f>>>2]>>>24-8*(f%4)&255));return b.join("")},parse:function(a){for(var c=a.length,b=[],f=0;f<c;f++)b[f>>>2]|=(a.charCodeAt(f)&255)<<24-8*(f%4);return new q.init(b,c)}},h=b.Utf8={stringify:function(a){try{return decodeURIComponent(escape(k.stringify(a)))}catch(b){throw Error("Malformed UTF-8 data");}},parse:function(a){return k.parse(unescape(encodeURIComponent(a)))}},
-u=d.BufferedBlockAlgorithm=n.extend({reset:function(){this._data=new q.init;this._nDataBytes=0},_append:function(a){"string"==typeof a&&(a=h.parse(a));this._data.concat(a);this._nDataBytes+=a.sigBytes},_process:function(a){var b=this._data,d=b.words,f=b.sigBytes,l=this.blockSize,e=f/(4*l),e=a?g.ceil(e):g.max((e|0)-this._minBufferSize,0);a=e*l;f=g.min(4*a,f);if(a){for(var h=0;h<a;h+=l)this._doProcessBlock(d,h);h=d.splice(0,a);b.sigBytes-=f}return new q.init(h,f)},clone:function(){var a=n.clone.call(this);
-a._data=this._data.clone();return a},_minBufferSize:0});d.Hasher=u.extend({cfg:n.extend(),init:function(a){this.cfg=this.cfg.extend(a);this.reset()},reset:function(){u.reset.call(this);this._doReset()},update:function(a){this._append(a);this._process();return this},finalize:function(a){a&&this._append(a);return this._doFinalize()},blockSize:16,_createHelper:function(a){return function(b,d){return(new a.init(d)).finalize(b)}},_createHmacHelper:function(a){return function(b,d){return(new w.HMAC.init(a,
-d)).finalize(b)}}});var w=e.algo={};return e}(Math);
-(function(){var g=CryptoJS,j=g.lib,e=j.WordArray,d=j.Hasher,m=[],j=g.algo.SHA1=d.extend({_doReset:function(){this._hash=new e.init([1732584193,4023233417,2562383102,271733878,3285377520])},_doProcessBlock:function(d,e){for(var b=this._hash.words,l=b[0],k=b[1],h=b[2],g=b[3],j=b[4],a=0;80>a;a++){if(16>a)m[a]=d[e+a]|0;else{var c=m[a-3]^m[a-8]^m[a-14]^m[a-16];m[a]=c<<1|c>>>31}c=(l<<5|l>>>27)+j+m[a];c=20>a?c+((k&h|~k&g)+1518500249):40>a?c+((k^h^g)+1859775393):60>a?c+((k&h|k&g|h&g)-1894007588):c+((k^h^
-g)-899497514);j=g;g=h;h=k<<30|k>>>2;k=l;l=c}b[0]=b[0]+l|0;b[1]=b[1]+k|0;b[2]=b[2]+h|0;b[3]=b[3]+g|0;b[4]=b[4]+j|0},_doFinalize:function(){var d=this._data,e=d.words,b=8*this._nDataBytes,l=8*d.sigBytes;e[l>>>5]|=128<<24-l%32;e[(l+64>>>9<<4)+14]=Math.floor(b/4294967296);e[(l+64>>>9<<4)+15]=b;d.sigBytes=4*e.length;this._process();return this._hash},clone:function(){var e=d.clone.call(this);e._hash=this._hash.clone();return e}});g.SHA1=d._createHelper(j);g.HmacSHA1=d._createHmacHelper(j)})();
-(function(){var g=CryptoJS,j=g.enc.Utf8;g.algo.HMAC=g.lib.Base.extend({init:function(e,d){e=this._hasher=new e.init;"string"==typeof d&&(d=j.parse(d));var g=e.blockSize,n=4*g;d.sigBytes>n&&(d=e.finalize(d));d.clamp();for(var q=this._oKey=d.clone(),b=this._iKey=d.clone(),l=q.words,k=b.words,h=0;h<g;h++)l[h]^=1549556828,k[h]^=909522486;q.sigBytes=b.sigBytes=n;this.reset()},reset:function(){var e=this._hasher;e.reset();e.update(this._iKey)},update:function(e){this._hasher.update(e);return this},finalize:function(e){var d=
-this._hasher;e=d.finalize(e);d.reset();return d.finalize(this._oKey.clone().concat(e))}})})();
-(function(){var g=CryptoJS,j=g.lib,e=j.Base,d=j.WordArray,j=g.algo,m=j.HMAC,n=j.PBKDF2=e.extend({cfg:e.extend({keySize:4,hasher:j.SHA1,iterations:1}),init:function(d){this.cfg=this.cfg.extend(d)},compute:function(e,b){for(var g=this.cfg,k=m.create(g.hasher,e),h=d.create(),j=d.create([1]),n=h.words,a=j.words,c=g.keySize,g=g.iterations;n.length<c;){var p=k.update(b).finalize(j);k.reset();for(var f=p.words,v=f.length,s=p,t=1;t<g;t++){s=k.finalize(s);k.reset();for(var x=s.words,r=0;r<v;r++)f[r]^=x[r]}h.concat(p);
-a[0]++}h.sigBytes=4*c;return h}});g.PBKDF2=function(d,b,e){return n.create(e).compute(d,b)}})();
-    </script>
-    <script>
-        /*! srcdoc-polyfill - v0.1.1 - 2013-03-01
-        * http://github.com/jugglinmike/srcdoc-polyfill/
-        * Copyright (c) 2013 Mike Pennisi; Licensed MIT */
-        (function( window, document, undefined ) {
-	
-	        var idx, iframes;
-	        var _srcDoc = window.srcDoc;
-	        var isCompliant = !!("srcdoc" in document.createElement("iframe"));
-	        var implementations = {
-		        compliant: function( iframe, content ) {
+</section><!-- End Hero -->
+<main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+            <div id="container-1" style="width:100%; height:400px;"></div>
+            <div id="container-2" style="width:100%; height:400px;"></div>
+            <div id="container-3" style="width:100%; height:400px;"></div>
+            <div id="container-4" style="width:100%; height:400px;"></div>
+        </div>
+    </section><!-- End About Section -->
 
-			        if (content) {
-				        iframe.setAttribute("srcdoc", content);
-			        }
-		        },
-		        legacy: function( iframe, content ) {
+    <section id="food" class="faq section-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <h2>疫情期间法国营业场所分布图</h2>
+                    <iframe frameborder="0" style="border:0; width: 100%; height: 600px;" allowfullscree
+                            src="https://www.google.com/maps/d/embed?mid=1v9Gea0JkXhc2S8yst-y8nLTrYEFqQd-M"></iframe>
+                </div>
+            </div>
+             <div class="row justify-content-center">
+                 <div class="col-lg-12">
+                     <h2>疫情期间巴黎开放市场分布图</h2>
+                     <iframe frameborder="0" style="border:0; width: 100%; height: 600px;" allowfullscree
+                             src="https://www.google.com/maps/d/u/0/embed?mid=1Dia90uQjDq6gAYrZYKz2xN-ZTMosIDOq"></iframe>
+                 </div>
+             </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <h2>疫情期间巴黎可送餐商家分布图</h2>
+                    <iframe frameborder="0" style="border:0; width: 100%; height: 600px;" allowfullscreen
+                            src="https://www.google.com/maps/d/u/0/embed?mid=1SQA9ycAN5Lb9FQKEeheScDdSNFBF2hrU"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
-			        var jsUrl;
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h4>最新时事新闻</h4>
+                <ul class="timeline"></ul>
+            </div>
+        </div>
+    </section><!-- End Services Section -->
 
-			        if (!iframe || !iframe.getAttribute) {
-				        return;
-			        }
+    <section id="rumor" class="faq section-bg">
+        <div class="container">
 
-			        if (!content) {
-				        content = iframe.getAttribute("srcdoc");
-			        } else {
-				        iframe.setAttribute("srcdoc", content);
-			        }
+            <div class="section-title" data-aos="fade-up">
+                <p>2019冠状病毒（COVID-19）谣言粉碎</p>
+            </div>
 
-			        if (content) {
-				        // The value returned by a script-targeted URL will be used as
-				        // the iFrame's content. Create such a URL which returns the
-				        // iFrame element's `srcdoc` attribute.
-				        jsUrl = "javascript: window.frameElement.getAttribute('srcdoc');";
+            <ul class="faq-list">
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor120259084288" class="collapsed">家用空气净化器能过滤病毒吗？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor120259084288" class="collapse" data-parent=".faq-list">
+                        <p>
+                            中国疾控中心研究员冯录召：不一定有效，仍然建议多通风
+                            <br> 市场上常用的空气净化器，主要适用于空气中的污染物，并没有对病毒或其他病原微生物有杀灭率的要求，作为刚发现不久的新冠病毒，也缺乏相关研究。空气净化器可以用，但要预防病毒感染，还是得尽量多通风。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor120259084289" class="collapsed">紫外线消毒灯能杀灭新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor120259084289" class="collapse" data-parent=".faq-list">
+                        <p>
+                            国家卫健委：冠状病毒对紫外线敏感
+                            <br> 在国家卫健委印发的《新型冠状病毒感染的肺炎诊疗方案（试行第四版）》中提到“病毒对紫外线和热敏感，56℃30分钟、乙醚、75%乙醇、含氯消毒剂、过氧乙酸和氯仿等脂溶剂均可有效灭活病毒。”紫外线消毒灯要严格按照说明书的要求使用。且人和宠物都要离开正在消毒的房间，以免对皮肤和眼睛造成损伤。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor137438953472" class="collapsed">服用降压药会增加感染新冠病毒的风险？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor137438953472" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：目前没有任何动物和临床研究数据证实这种说法的可靠性
+                            <br> 因现有研究显示ACE2是新型冠状病毒入侵人体的关键，网传服用ACEI（血管紧张素转化酶抑制剂）类降压药会增加感染新冠病毒的风险。但目前没有任何动物和临床研究数据证实。人体是复杂的个体，不能凭借简单的逻辑推理就盲目听信，要讲求证据。反倒是擅自停用降压药会导致血压波动，给高血压患者带来更大的危险。对高血压患者而言，所有的药物调整都要在专科医生的指导下进行。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor146028888064" class="collapsed">喝高度酒能抵抗新冠病毒?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor146028888064" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：喝进去不会作用于病毒
+                            <br> 酒精的确能杀死病毒。但得是75%浓度的酒精消毒产品，而且只能用来体表消毒。喝进身体的高度酒，只会被吸收代谢，不会作用于病毒。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor180388626432" class="collapsed">吃奥司他韦可以预防新冠病毒?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor180388626432" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：适用于流感治疗，目前还没有证据表明奥司他韦能治疗新冠病毒感染
+                            <br> 新型冠状病毒，是一种先前尚未在人类中发现的冠状病毒。 而奥司他韦是治疗流感的特效药，作用靶点与流感病毒相关，目前尚没有证据显示其对于新型冠状病毒具有临床疗效。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor180388626433" class="collapsed">吃抗生素可以预防新冠?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor180388626433" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：抗生素作用于细菌，对病毒无效。
+                            <br> 抗生素作用于细菌，对病毒无效。在武汉同济、武汉协和同时发布新型冠状病毒肺炎快速诊疗指南中，也明确指出要避免盲目或不恰当的抗菌药物治疗，尤其是联合应用广谱抗菌药物。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor214748364800" class="collapsed">新冠病毒尚未发生明显变异？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor214748364800" class="collapse" data-parent=".faq-list">
+                        <p>
+                            中国-世界卫生组织新冠肺炎联合专家考察组：病毒尚未发生明显变异
+                            <br> 中国-世界卫生组织新冠肺炎联合专家考察组24日在北京举行发布会。考察组中方组长梁万年：通过对不同地点分离出的104株新冠病毒株进行全基因组测序，证实同源性达99.9%，提示病毒尚未发生明显变异。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor223338299392" class="collapsed">吃乳铁蛋白能预防新冠病毒?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor223338299392" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：无证据表明乳铁蛋白对病毒有用
+                            <br> 乳铁蛋白是哺乳动物乳汁中天然存在的一种蛋白质，目前没有证据表明它可以提高免疫力，更不能预防新型冠状病毒。别再交「智商税」了
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor249108103168" class="collapsed">核酸检测转阴后，还有可能复发？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor249108103168" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队：仅仅是核酸检测转阴，并不意味着康复
+                            <br> 《新型冠状病毒感染的肺炎诊疗方案（试行第五版）》指出，患者出院或解除隔离需同时满足以下三个条件：体温恢复正常3天以上、呼吸道症状明显好转；肺部影像学显示炎症明显吸收；连续两次呼吸道病原核酸检测阴性（采样时间间隔至少1天）。仅仅一次核酸检测阴性并不意味着康复，也就谈不上「复发」。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor300647710720" class="collapsed">多喝单枞茶多吃草莓可防肺炎？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor300647710720" class="collapse" data-parent=".faq-list">
+                        <p>
+                            经查证：系编造
+                            <br> 网络上流传2张截图，配文分别称“钟南山发布多喝单枞茶对防止肺炎有重大效果”“国家卫生局发布多吃草莓对防止肺炎有重大效果”。这2张截图都是假的。钟南山院士曾就肺炎疫情接受过媒体采访，并没有提到过前述的信息。目前我国并没有“国家卫生局”这个机构，只有国家卫健委。国家卫健委也并没发布过前述的信息。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor317827579904" class="collapsed">在人中涂风油精可以预防感染？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor317827579904" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：对预防新冠没有作用
+                            <br> 暂时还没有证据表明，风油精里的成分对预防或杀灭新冠有任何效果。不过在家宅久了，闻下凉凉的风油精，还是有助提神的。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor326417514496" class="collapsed">候鸟迁徙会携带传播新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor326417514496" class="collapse" data-parent=".faq-list">
+                        <p>
+                            剑桥大学病毒学助理研究员韩越：相比哺乳类，鱼、鸟、爬行类成为新冠肺炎中间宿主的可能性很小
+                            <br> 相比于哺乳动物，鱼类、鸟类和爬行类成为新冠肺炎中间宿主的可能性非常小。新冠病毒主要利用细胞表面受体ACE2感染哺乳动物，鸟类目前没有被检测出具备大量ACE2受体，被病毒侵染概率很低。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor420906795008" class="collapsed">全身喷洒酒精可起到消毒效果？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor420906795008" class="collapse" data-parent=".faq-list">
+                        <p>
+                            李兰娟院士辟谣：不能这样做
+                            <br> 中国工程院院士李兰娟在接受浙江新闻客户端记者采访时表示，不能这样做，病毒对于外界抵抗力不强，75%的酒精就可以消毒，但是这是对于有可能被污染的一些物体的消毒，并不是在家里针对人也要这样消毒。 人在外面接触主要是手，用流水冲洗，多洗手，这是最重要的办法。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor420906795009" class="collapsed">新冠病毒传播途径有变化？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor420906795009" class="collapse" data-parent=".faq-list">
+                        <p>
+                            科技部社会发展科技司司长吴远彬：目前研究结论显示，呼吸道飞沫和密切接触传播仍然是主要传播途径
+                            <br> 28日，科技部社会发展科技司司长吴远彬表示，目前研究结论显示，呼吸道飞沫和密切接触传播仍然是主要传播途径。粪口传播有一定风险，但传播能力和条件还需进一步相应研究证实。针对气溶胶传播，中国医科院实验动物所开展相应实验，气溶胶传播要同时满足密闭的空间、较长的时间、高浓度病毒三个条件，在这些条件下才有传染的可能性。通风条件良好的日常生活中气溶胶传播可能性小。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor438086664192" class="collapsed">喷嚏可以打几米远！病毒可悬浮24小时？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor438086664192" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队：交流要保持距离；尚未证实新冠病毒可以通过空气传播。
+                            <br> 一般情况下，飞沫传播只有与传染源近距离接触时才可能实现。飞沫传播在1～2米之间，距离传染源1米以外相对安全，2米开外就很安全了。 打喷嚏、咳嗽要比讲话时飞沫喷出的距离远许多，新型冠状病毒主要经飞沫传播。但是这并不意味着会导致空气中到处都是新型冠状病毒，也尚未证实其可以通过空气传播。即使与人接触时保持距离，也请带好口罩做好防护。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor455266533376" class="collapsed">熏艾可以预防新冠肺炎？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor455266533376" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：没用，甚至可能中毒
+                            <br> 尚无证据表明熏艾对预防新型冠状病毒感染有效，而且在密闭的室内可能会造成一氧化碳中毒
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor463856467968" class="collapsed">带毛领或绒线的外套容易吸附病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor463856467968" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：从流感病毒的性质推测，病毒更喜欢光滑无孔的表面，在毛织品上留存时间更短
+                            <br> 在普通家居、出行生活中，不必考虑衣物材质和静电问题对病毒吸附的影响，舒适为主。病毒通过飞沫传播，并不是单独在空气中，其可能在任何材质的衣物上停留，双手勿接触口鼻眼等、回家及时洗手、做好外套的消毒与吹风，比材质选择更重要。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor489626271744" class="collapsed">用56℃的热水洗澡能对抗病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor489626271744" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：洗热水澡也无法提升体内温度，不能对抗病毒，还可能会有生命危险。
+                            <br> 杀死新型冠状病毒至少需要56℃，30分钟，可用于物体表面消毒等。人在56℃的水里洗半小时，可能会得热射病，有生命危险。人体的体温是相对恒定的，洗热水澡也无法提升体内温度，无法预防病毒。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor549755813888" class="collapsed">别往空气中喷撒酒精，会爆炸？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor549755813888" class="collapse" data-parent=".faq-list">
+                        <p>
+                            清华大学化学系孙亚飞博士：确实要注意
+                            <br> 如果在空气中乱喷，容易因为局部过浓而爆燃。 喷洒酒精之后，会有一部分酒精发生气化，浓度虽有所降低，但是与氧气的接触却更充分了，所以空气中只要有3.5%左右的酒精，遇到明火、静电火花乃至一些高温物体，就足以发生爆炸。 因此，在喷洒酒精时，务必注意用量，不要过度喷洒导致空气中挥发的酒精太多，更不能直接对着空气喷洒，也不要对着人喷洒。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor549755813889" class="collapsed">吃大蒜可以杀灭新冠病毒吗？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor549755813889" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：不管是直接吃、榨汁喝还是炖冰糖都没用
+                            <br> 大蒜提取物是能杀菌，但是从大蒜变成大蒜提取物差距很大。而且目前还没有临床试验数据证明大蒜的抗病毒效果，就不要指望它能杀灭新型冠状病毒啦。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor601295421440" class="collapsed">把某些药物敷在脚底可以防病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor601295421440" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：到目前为止，还没有专门用于预防和治疗新冠病毒的药物
+                            <br> 有传闻某药方打粉和蛋清调匀，敷于双脚底涌泉穴。平躺16小时，期间不能坐，不能站。口含咬破大蒜一天一夜。可以考虑戴成人尿不湿。晚上开始敷，16小时内可以不用吃饭。可抑制病毒/治疗肺炎。丁香医生再次强调，到目前为止，还没有专门用于预防和治疗新冠病毒的药物。别浪费钱折腾了，少出门，勤洗手，做好家居外出防护，才是最好的方法。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor652835028992" class="collapsed">洋葱可以预防新冠肺炎？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor652835028992" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：无论是吃还是闻都不能预防新冠肺炎
+                            <br> 目前没有证据证明洋葱有预防新冠肺炎的功效。不过，炒菜吃还是很美味的，闻就算了吧，不嫌辣眼睛和鼻子吗。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor670014898176" class="collapsed">有人在身上喷消毒水烧着了？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor670014898176" class="collapse" data-parent=".faq-list">
+                        <p>
+                            平安天津辟谣：实为男子杀人未遂后引燃汽油
+                            <br> 近日，有网络传言和视频称，天津一男子在自己衣服上喷了含酒精的消毒水，然后开车时抽烟引发燃爆，不小心把自己烧死了。据平安天津微博发布：实为男子杀人未遂后引燃汽油。不过也要提醒大家，使用酒精等消毒剂进行消毒的时候一定要注意安全。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor704374636544" class="collapsed">新冠病毒可通过气溶胶传播？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor704374636544" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队：暂不明确。要重视，但不必恐慌
+                            <br> 气溶胶颗粒通常>10微米，一般医用口罩就能阻挡。半径
+                            <0.1微米的气溶胶微粒，重量轻，主要在高空，会随风飘走，呼吸到的概率不大。气溶胶质点比表面能很大，又有电荷，病毒很容易被破坏，存活度不高。非医务人员在日常只有达到极高数量级的阈值，部分病毒才能由黏膜进入人体。由气溶胶形式悬停在衣物、皮肤的病毒，只有极微小的比例能通过接触传播。这样的病毒量不太会引发疾病。 </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor730144440320" class="collapsed">人会传染宠物？宠物染病会传染人？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor730144440320" class="collapse" data-parent=".faq-list">
+                        <p>
+                            世界卫生组织回应：目前没有证据显示狗猫等宠物会感染新型冠状病毒
+                            <br> 世界卫生组织回应：「目前没有证据显示狗猫等宠物会感染新型冠状病毒。与宠物接触后，用肥皂和水洗手可以显著减少其他常见细菌在宠物和人类之间的传播，如大肠杆菌和沙门氏菌。」但如果宠物在外面明确接触到新型冠状病毒肺炎患者，谨慎起见，还是需要将宠物进行隔离观察。请大家爱惜宠物，不要随意遗弃。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor790273982464" class="collapsed">吃利巴韦林可以预防新冠?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor790273982464" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：利巴韦林无法作用于新型冠状病毒
+                            <br> 利巴韦林无法作用于新型冠状病毒。传统的抗流感药物并不能有效预防新型冠状病毒，而且随便用药还会造成一定的健康风险。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor816043786240" class="collapsed">买不到口罩可以自制？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor816043786240" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：不靠谱
+                            <br> 网上自制口罩的教程，基本材料都是推荐棉纱、毛线、帆布等。这些材料空隙较大，无法有效过滤病毒。除了保暖，阻挡病菌作用十分有限。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor816043786241" class="collapsed">喝60℃的水可以杀死病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor816043786241" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：人体是恒温的，会散热。
+                            <br> 再次强调，杀死冠状病毒至少需要56℃，30分钟，可用于物体表面消毒等，不能作用于人体。人体通过产热和散热，会将体温维持在一个正常的范围。真保持体温56℃半小时的话，那杀死的怕不只是病毒了。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor824633720832" class="collapsed">用生理盐水洗鼻子可预防新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor824633720832" class="collapse" data-parent=".faq-list">
+                        <p>
+                            WHO 辟谣：没有证据表明，经常用生理盐水冲洗鼻子可以防止感染新冠病毒
+                            <br> 有一些有限的证据表明，经常用生理盐水清洗鼻子可以帮助人们更快地从普通感冒中恢复过来。然而，经常清洗鼻子并不能预防呼吸道感染。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor867583393792" class="collapsed">可在家使用新冠病毒试剂盒自测？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor867583393792" class="collapse" data-parent=".faq-list">
+                        <p>
+                            北京市药监局提示：普通市民家庭不可自行使用
+                            <br> 近日，有人在朋友圈兜售某公司生产的新冠病毒抗体检测试剂盒，单价150元，并宣称可以家庭自行使用。对此，北京市药监局提示，经批准注册的新冠病毒检测试剂盒，均需要具备PCR实验室及专用设备的医疗机构才能完成检测，普通市民家庭不可自行使用，市民不要轻信虚假宣传，出现相关症状应及时就医。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor893353197568" class="collapsed">新冠病毒会通过下水道传播？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor893353197568" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队：不能排除有这一可能
+                            <br> 浙江大学医学院附属第一院传染病科主任医师肖永红接受人民网采访中表示： 「对于下水道密闭性不是特别严格的小区而言，有些问题是需要注意的。比如，发现下水道有反水、漏水的情况，应当加强马桶或便器的密封性。对于一些使用旱厕的农村地区，则需要定期对厕所进行消毒。」
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor910533066752" class="collapsed">银离子抗菌液能杀灭新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor910533066752" class="collapse" data-parent=".faq-list">
+                        <p>
+                            清华大学化学系孙亚飞博士：尚无权威机构证实银离子对新冠病毒的作用，不推荐只用这种办法消毒
+                            <br> 这一说法缺乏依据。银离子确实有一定的抑菌、杀菌效果，其原理是让蛋白酶失去活性，细菌无法完成代谢。此前有研究发现，银离子对SARS病毒可能有一定杀灭作用，但目前尚未证实银离子对新型冠状病毒有同样效果。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor936302870528" class="collapsed">病毒感染的都是老年人?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor936302870528" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：新冠病毒对所有年龄组都易感
+                            <br> 全年龄段的人都需要做防护。新型冠状病毒对所有年龄组都易感。目前，新型冠状病毒已经确定可以人传人，经呼吸道飞沫传播是主要传播途径，亦可通过接触传播。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor970662608896" class="collapsed">用了7天的N95口罩消毒可继续用？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor970662608896" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：吹风机吹或者喷洒酒精，都可能会破坏口罩的保护作用。
+                            <br> 美国疾控中心指出N95口罩在特殊情况下（比如口罩供应不足等），可在严格规范下“延长使用期限”以及“有限重复使用”。前者指一次佩戴不取下来，去接触不同的病人；后者指在满足一定条件下，可重复使用一定次数。若厂家说明了可重复使用次数，那以厂家说的为准；若没说明，那“不超过5次”。7天大大超过了这个次数。吹风机吹或者喷洒酒精，都可能会破坏口罩的保护作用。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor987842478080" class="collapsed">新冠肺炎潜伏期最长 24 天？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor987842478080" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队提醒：潜伏期长是个案，要重视，但无需恐慌。
+                            <br> 由国家卫健委高级别专家组组长钟南山领衔的「中国2019年新型冠状病毒感染的临床特征」研究，在预印本网站medRxiv上发表。钟南山等人对1099例（截至1月29日）新冠肺炎确诊患者的临床特征进行了回顾性研究。研究发现，新冠肺炎的中位潜伏期为3.0天，最长可达24天。丁香医生在此提醒，潜伏期长是个案，要重视，但无需恐慌。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1030792151040" class="collapsed">吃果蔬和肉蛋会感染新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1030792151040" class="collapse" data-parent=".faq-list">
+                        <p>
+                            中国疾病预防控制中心研究员冯录召：病毒通过飞沫、直接接触等方式污染到果蔬肉蛋的几率很低
+                            <br> 蔬菜、肉、水果买回家后先用流水冲洗。蔬菜、肉类应烧熟吃，水果尽量削皮，处理生食和熟食的切菜板及刀具要分开。病毒在56℃、30分钟就能被杀死，炒菜经常能达到100℃以上的高温，炒熟炒透后不用担心病毒。处理过后注意及时洗手。目前新型冠状病毒是否经粪-口途径（消化道）传播，虽尚待进一步明确，但通过将食物洗净煮熟，饭前便后洗手等方法可预防病毒经消化道传播。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1099511627776" class="collapsed">病毒会存在手机和电梯按键上？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1099511627776" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队：接触手机、电梯按键后，需要及时洗手
+                            <br> 根据SARS病毒的特点，推测新型冠状病毒可在金属、塑料上存活2～3天，但存活不代表可达到传染条件。 手机、电梯按键存在的细菌和病毒数量种类众多，不管是否沾染上带有冠状病毒的飞沫，接触后都需好好洗手。不要用脏手碰口鼻、揉眼睛，更不要一边吃东西一边玩手机。 无症状密切接触史者和轻微症状居家隔离者的手机，需好好消毒，不要触碰。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1125281431552" class="collapsed">口罩喷酒精遇 84 消毒瞬间死亡？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1125281431552" class="collapse" data-parent=".faq-list">
+                        <p>
+                            楚天都市报记者从多方证实：该消息系谣言
+                            <br> 网传「武汉盘龙城一小区男子把口罩喷酒精戴，坐电梯时遇84消毒，瞬间晕倒死亡」，楚天都市报记者多方证实，系谣言。属地派出所表示，他们未接到或者处置过类似的警情。据悉，武汉市相关部门已联系上帖主核实情况，帖主表示系「道听途说」，已自行删帖。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1228360646656" class="collapsed">带呼吸阀的口罩没有用？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1228360646656" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：口罩上有呼吸阀不用担心
+                            <br> 呼吸阀的气流是单向向外的，不影响使用者的防护效果。但已经有症状的人，建议不要使用带有呼吸阀的防护口罩，它无法阻挡病毒飞沫溢出。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1236950581248" class="collapsed">环保酵素可以消灭新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1236950581248" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：没有证据支持「环保酵素能消毒」，环保酵素存在安全隐患，且可能是违法产品
+                            <br> 《中华人民共和国传染病防治法》规定：生产用于传染病防治的消毒产品的单位和生产用于传染病防治的消毒产品，应当经省级以上人民政府卫生行政部门审批。各地采用的「环保酵素」，均为民间自制，公开资料中产品未见任何相关证明。目前权威机构确认能有效灭活病毒的可靠产品只包括75%酒精、含氯消毒剂、乙醚等。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1374389534720" class="collapsed">病毒防护卡挂身上能防新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1374389534720" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：一张卡片杀死新冠病毒？咋不上天呢！
+                            <br> 卡片中主要活性成分亚氯酸钠，在接触空气时释放的ClO₂是可以消除病菌，但它不稳定，很容易就分解了，而且作为气体，移动的人暴露在流动的空气中，这张卡片的效果基本就没有。而且ClO₂在动物体内，会降低动物甲状腺素的分泌量，还会增加溶血性贫血风险。 卡片上还有对皮肤黏膜有强烈刺激性的成分，万一孩子拆开玩，不小心吃下、撒入眼睛或接触敏感部位，都会有危险。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1417339207680" class="collapsed">散步会感染新型冠状病毒肺炎？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1417339207680" class="collapse" data-parent=".faq-list">
+                        <p>
+                            武汉市第九医院辟谣：我院没出过这样的通知
+                            <br> 网上出现了武汉市第九医院的一个紧急通知，说是散步会感染新型冠状病毒肺炎。 对此，武汉市第九医院院长刘明瑜表示：“这是谣言，我们根本没出这样的通知，请大家不要相信。""
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1417339207681" class="collapsed">晒太阳可以杀灭新型冠状病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1417339207681" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：太阳的照射温度达不到 56℃，且日照紫外线也达不到紫外线消毒灯的强度
+                            <br> 太阳的照射温度达不到56℃，且日照紫外线也达不到紫外线消毒灯的强度，不论从哪一个角度都不能达到杀灭病毒的要求。若要外出晒太阳，仍需戴好口罩，做好必要防护。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1443109011456" class="collapsed">吃板蓝根可以预防新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1443109011456" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：板蓝根对新型冠状病毒无效
+                            <br> 迄今为止，和板蓝根有关的提取物研究，无一进入临床试验阶段。 也就是说，即使是对预防流感病毒，板蓝根也没有被证明有预防效果，更别说预防新型冠状病毒了。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1468878815232" class="collapsed">治疗主要靠激素，大概率会成为废人？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1468878815232" class="collapse" data-parent=".faq-list">
+                        <p>
+                            李兰娟院士辟谣：现在发生的大量的病人根本就不用激素
+                            <br> 非典时期，激素治疗使部分患者留下股骨头坏死的后遗症，这是药物的一种副作用。现在发生的大量的病人根本就不用激素，所以不会引起股骨头坏死。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1477468749824" class="collapsed">不要收现金，会感染新冠病毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1477468749824" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队：无论何时，接触了现金都要洗手
+                            <br> 现金流通渠道复杂，确实会有很多细菌病毒等病原体，但并不是接触了就一定会感染，而是不洗手又揉眼睛、拿东西吃或摸伤口等。无论是否防范新型冠状病毒，都建议大家在使用现金后，注意洗手、正确洗手，避免脏手接触眼睛、口鼻。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1477468749825" class="collapsed">吸烟就能预防病毒?<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1477468749825" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：吸烟没有任何好处
+                            <br> 吸烟不仅无法对病毒感染产生任何的预防作用，还会刺激呼吸道。烟草中的有害物质还会损伤肺功能、减低身体抵抗力，而增加受到感染的可能，呼出的二手烟雾也会危害到周边人的健康。 另外，吸烟时无法戴口罩，手部会触碰口鼻，会增加病毒感染风险。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1529008357376" class="collapsed">吃降压药会增加感染病毒的风险？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1529008357376" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：目前没有任何动物和临床研究数据证实这种说法的可靠性
+                            <br> 因现有研究显示ACE2是新型冠状病毒入侵人体的关键，网传服用ACEI（血管紧张素转化酶抑制剂）类降压药会增加感染新冠病毒的风险。但目前没有任何动物和临床研究数据证实。人体是复杂的个体，不能凭借简单的逻辑推理就盲目听信，要讲求证据。反倒是擅自停用降压药会导致血压波动，给高血压患者带来更大的危险。对高血压患者而言，所有的药物调整都要在专科医生的指导下进行。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1546188226560" class="collapsed">服用VC可以预防感染？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1546188226560" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：没有预防作用，过度服用会中毒
+                            <br> 普通感冒前，部分人群长期使用VC可以缩短病程，造成很多人有VC可以抵抗流感、提高免疫力的印象。也有一些人会把补充VC当作万能药，没事就给自己补一点。在新型冠状病毒的疫情下，为了安心就大剂量地使用VC。 但其实在疾病治疗过程中，摄入VC通常只是作为辅助治疗手段，并不具备预防和抵抗新型冠状病毒的作用，过度服用还会导致腹泻、皮疹等中毒现象。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1554778161152" class="collapsed">康复者血液有可能治好新冠肺炎？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1554778161152" class="collapse" data-parent=".faq-list">
+                        <p>
+                            中国生物：治疗性新冠特免血浆制品已投入临床，患者重点指标向好，临床体征和症状好转
+                            <br> 2月8日，以新型冠状病毒感染的肺炎诊疗方案（试行第五版）为指南，首期在江夏区第一人民医院开展了3名危重患者的新冠特免血浆治疗，目前连同后续医院治疗的危重病人超过了10人。临床反映，患者接受治疗12至24小时后，实验室检测主要炎症指标明显下降，淋巴细胞比例上升，血氧饱和度、病毒载量等重点指标全面向好，临床体征和症状明显好转。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1571958030336" class="collapsed">电吹风对手和面部吹30秒就能消毒？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1571958030336" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：30秒太短，真吹半小时容易受伤。
+                            <br> 杀死冠状病毒至少需要56℃，30分钟，可用于物体表面消毒等，电吹风的温度即使能达到56℃甚至更高，对着手和面部持续吹30分钟，容易造成烫伤等伤害，还是好好洗手，做好清洁吧。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1640677507072" class="collapsed">新冠病毒通过眼神对视传播？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1640677507072" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：系编造，造谣网民已被依法处罚
+                            <br> 在国家卫健委印发的《新型冠状病毒感染的肺炎诊疗方案（试行第四版）》中显示，新型冠状病毒经呼吸道飞沫传播是主要的传播途径，亦可通过接触传播。而眼神对视不属于前述任何一种。 另外，造谣网民已被依法处罚。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1649267441664" class="collapsed">养猫狗可以预防新冠病毒感染？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1649267441664" class="collapse" data-parent=".faq-list">
+                        <p>
+                            丁香医生团队辟谣：养猫狗对身心健康有好处，但对预防新冠病毒感染没有帮助
+                            <br> 传言「猫狗在与人相处的过程中会加强人类的冠状病毒抗体，所以养猫狗可以预防新冠病毒感染。」猫狗的确会感染冠状病毒，不过冠状病毒有很多种，它们感染的主要是冠状病毒α属中的猫/犬冠状病毒。严重危害人类健康的冠状病毒主要是β属，比如SARS病毒和现在的新冠病毒。猫/犬冠状病毒本来就对人类无影响，当然不会因为猫狗感染过而帮助我们抵御其它冠状病毒。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1657857376256" class="collapsed">确诊者家中的狗检测呈弱阳性？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1657857376256" class="collapse" data-parent=".faq-list">
+                        <p>
+                            香港食卫局长陈肇始强调：虽查到弱阳性，但无证据显示狗会传播新冠病毒给人
+                            <br> 据香港文汇网报道，香港渔护署发现一名新冠肺炎确诊患者饲养的宠物狗对病毒测试呈弱阳性反应。香港食物及卫生局长陈肇始28日强调，无证据显示狗会传播新冠病毒给人。她呼吁养宠物的市民注意个人卫生。 陈肇始表示，这只狗会接受兽医的医学监察，并抽取样本化验，待测试结果呈阴性才会发还。
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#rumor1700807049216" class="collapsed">疫情期间大强度锻炼可提高抵抗力？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="rumor1700807049216" class="collapse" data-parent=".faq-list">
+                        <p>
+                            国家体育总局体育科学研究所研究员徐建方：长时间大强度的运动，会导致身体机能失调，免疫功能下降
+                            <br> 长时间大强度的运动，会导致身体机能失调，免疫功能下降，并且运动损伤风险增加。因此，特别忌讳平常不运动、锻炼搞突击。什么样的运动强度是适宜的：运动后感觉轻度的呼吸急促，周身微热，面色微红，内心感觉轻松愉快。虽然稍微感觉有点疲乏，但是经过休息以后可以消除，并且没有疼痛和麻木。
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
 
-				        iframe.setAttribute("src", jsUrl);
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq section-bg">
+        <div class="container">
 
-				        // Explicitly set the iFrame's window.location for
-				        // compatability with IE9, which does not react to changes in
-				        // the `src` attribute when it is a `javascript:` URL, for
-				        // some reason
-				        if (iframe.contentWindow) {
-					        iframe.contentWindow.location = jsUrl;
-				        }
-			        }
-		        }
-	        };
-	        var srcDoc = window.srcDoc = {
-		        // Assume the best
-		        set: implementations.compliant,
-		        noConflict: function() {
-			        window.srcDoc = _srcDoc;
-			        return srcDoc;
-		        }
-	        };
+            <div class="section-title" data-aos="fade-up">
+                <p>2019冠状病毒（COVID-19）专题问答</p>
+            </div>
 
-	        // If the browser supports srcdoc, no shimming is necessary
-	        if (isCompliant) {
-		        return;
-	        }
+            <ul class="faq-list">
+                <li data-aos="fade-up" data-aos-delay="100">
+                    <a data-toggle="collapse" class="" href="#faq1">2019冠状病毒有何症状？ <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq1" class="collapse show" data-parent=".faq-list">
+                        <p>
+                            2019冠状病毒最常见症状是发热、乏力和干咳。有些患者可能会有疼痛、鼻塞、流涕、咽痛或腹泻等症状。这些症状往往轻微，且逐渐出现。有些感染者并无任何症状，也无不适感。大多数感染者（约80%）无需特别治疗即可康复。大约六分之一感染者病情严重，呼吸困难。老人以及那些有基础性疾病（如高血压、心脏病或糖尿病）的人可能会患严重疾病。发热、咳嗽和呼吸困难者应就医。
+                        </p>
+                    </div>
+                </li>
 
-	        srcDoc.set = implementations.legacy;
+                <li data-aos="fade-up" data-aos-delay="200">
+                    <a data-toggle="collapse" href="#faq2" class="collapsed">如何佩戴、使用、取下和处置口罩 <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq2" class="collapse" data-parent=".faq-list">
+                        <p>
+                            1. 在拿口罩前，用含酒精成分的免洗洗手液或用肥皂和清水洗手。<br>
+                            2. 拿起口罩，检查有无撕裂或破损。<br>
+                            3. 确定哪一边向上（有金属片的一边向上）。<br>
+                            4. 看清口罩正反面，口罩深色面朝外。<br>
+                            5. 将口罩戴在脸上。捏紧金属鼻夹或口罩硬边，使其贴紧鼻子。<br>
+                            6. 下拉口罩底部，使口罩覆盖口和下颌。<br>
+                            7. 使用后取下口罩；从耳后移除线绳，取下口罩后，注意不让口罩触碰脸部和衣服，以免接触可能被污染的口罩表面。<br>
+                            8. 用后立即将口罩丢进封闭的垃圾桶。<br>
+                            9. 触摸或丢弃口罩后，采取手卫生措施。使用含酒精成分的免洗洗手液洗手，如果手明显脏污，则用肥皂和清水洗手。
+                        </p>
+                    </div>
+                </li>
 
-	        // Automatically shim any iframes already present in the document
-	        iframes = document.getElementsByTagName("iframe");
-	        idx = iframes.length;
+                <li data-aos="fade-up" data-aos-delay="300">
+                    <a data-toggle="collapse" href="#faq3" class="collapsed">抗生素能有效预防和治疗2019冠状病毒吗？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq3" class="collapse" data-parent=".faq-list">
+                        <p>
+                            不能。抗生素对病毒不起作用，只对细菌感染有作用。2019冠状病毒由病毒导致，因此，使用抗生素并无效果。不应使用抗生素预防或治疗2019冠状病毒。只有在按医嘱治疗细菌感染的情况下才应使用抗生素。
+                        </p>
+                    </div>
+                </li>
 
-	        while (idx--) {
-		        srcDoc.set( iframes[idx] );
-	        }
+                <li data-aos="fade-up" data-aos-delay="400">
+                    <a data-toggle="collapse" href="#faq4" class="collapsed">COVID-19和流感病毒有何相似之处？<i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq4" class="collapse" data-parent=".faq-list">
+                        <p>
+                            首先，COVID-19病毒和流感病毒会导致相似的疾病症状。它们都引起呼吸系统疾病，有的患者无症状或属轻症，有的则患重症甚至死亡。<br>
 
-        }( this, this.document ));
-    </script>
-    <script>
-        var pl = {"salt":"3vHfTkKCQBwjD1F+ni8F/xSMw1PHa8ibCFObtxycWac=","iv":"/rCL1OPtCgNLCdSsKnYxBQ==","data":"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"};
-        
-        var submitPass = document.getElementById('submitPass');
-        var passEl = document.getElementById('pass');
-        var invalidPassEl = document.getElementById('invalidPass');
-        var successEl = document.getElementById('success');
-        var contentFrame = document.getElementById('contentFrame');
-        
-        if (pl === "") {
-            submitPass.disabled = true;
-            passEl.disabled = true;
-            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
-        }
-        
-        function doSubmit(evt) {
-            try {
-                var decrypted = decryptFile(CryptoJS.enc.Base64.parse(pl.data), passEl.value, CryptoJS.enc.Base64.parse(pl.salt), CryptoJS.enc.Base64.parse(pl.iv));
-                if (decrypted === "") throw "No data returned";
-                
-                // Set default iframe link targets to _top so all links break out of the iframe
-                decrypted = decrypted.replace("<head>", "<head><base href=\".\" target=\"_top\">");
-                
-                srcDoc.set(contentFrame, decrypted);
-                
-                successEl.style.display = "inline";
-                passEl.disabled = true;
-                submitPass.disabled = true;
-                setTimeout(function() {
-                    dialogWrap.style.display = "none";
-                }, 1000);
-            } catch (e) {
-                invalidPassEl.style.display = "inline";
-                passEl.value = "";
-            }
-        }
-        
-        submitPass.onclick = doSubmit;
-        passEl.onkeypress = function(e){
-            if (!e) e = window.event;
-            var keyCode = e.keyCode || e.which;
-            invalidPassEl.style.display = "none";
-            if (keyCode == '13'){
-              // Enter pressed
-              doSubmit();
-              return false;
-            }
-        }
-        
-        function decryptFile(contents, password, salt, iv) {
-            var _cp = CryptoJS.lib.CipherParams.create({
-                ciphertext: contents
-            });
-            var key = CryptoJS.PBKDF2(password, salt, { keySize: 256/32, iterations: 100 });
-            var decrypted = CryptoJS.AES.decrypt(_cp, key, {iv: iv});
-            
-            return decrypted.toString(CryptoJS.enc.Utf8);
-        }
-    </script>
-  </body>
+                            其次，这两种病毒均通过接触、飞沫和污染物传播。因此，可以采取同样的公共卫生措施，例如保持良好的手卫生习惯和呼吸礼仪（咳嗽时屈肘遮掩口鼻或使用纸巾，并立即适当处置用过的纸巾）。这些措施对于预防感染很重要。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-toggle="collapse" href="#faq5" class="collapsed">如果没有清水和洗手液洗手，可否用酒精搓手液代替？ <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq5" class="collapse" data-parent=".faq-list">
+                        <p>
+                            当你双手没有明显污垢时，用70至80%酒精搓手液搓手，可以有效预防经双手散播的传染病。<br>
+
+                            搓手的技巧跟洗手一样，用足够的份量，即大约3至5毫升的酒精搓手液，将双手的所有表面复盖。我们要搓手掌、手背、指隙、指背、拇指、指尖及手腕，最少20秒，直至双手干透。为了达至最佳效果，应让酒精自然挥发，不要用纸巾抹干。使用前要看清楚酒精搓手液的有效日期。
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="600">
+                    <a data-toggle="collapse" href="#faq6" class="collapsed">2019冠状病毒在天气回暖后会自然消失吗？ <i
+                            class="icofont-simple-up"></i></a>
+                    <div id="faq6" class="collapse" data-parent=".faq-list">
+                        <p>
+                            研究发现，冠状病毒通常在较低温度及干燥的环境中存活更长的时间并保持更长的活跃性。
+                        </p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </section><!-- End F.A.Q Section -->
+
+</main><!-- End #main -->
+
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/venobox/venobox.min.js"></script>
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/totalCaseEachDay.js"></script>
+<script src="assets/js/diffCaseEachDay.js"></script>
+<script src="assets/js/dailyNewCase.js"></script>
+<script src="assets/js/map.js"></script>
+<script src="assets/js/news.js"></script>
+<script src="assets/js/summary.js"></script>
+</body>
+
 </html>
