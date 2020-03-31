@@ -1,0 +1,1 @@
+var mapData=[['fr-occ', 1285],['fr-pac', 1927],['fr-idf', 7660],['fr-nor', 789],['fr-ges', 5479],['fr-cvl', 645],['fr-naq', 912],['fr-hdf', 1753],['fr-pdl', 459],['fr-bfc', 1569],['fr-ara', 2093],['fr-bre', 707]]
