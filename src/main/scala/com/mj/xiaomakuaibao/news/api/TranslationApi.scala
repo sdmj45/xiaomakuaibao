@@ -63,6 +63,7 @@ class TranslationApi {
        |  <p>${newArticle.content}</p>
        |  <a href="${newArticle.url}" target="_blank">查看原文点击此处</a>
        |  <p class="text-muted">来源：${newArticle.author}</p>
+       | </li>
        |""".stripMargin
   }
 
