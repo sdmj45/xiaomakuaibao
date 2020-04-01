@@ -17,6 +17,7 @@ object Back extends Actor {
       val news: Module = new News
       val covid: Module = new Covid
 //      covid :: news :: Nil foreach (_.run)
+//      covid :: Nil foreach (_.run)
       news :: Nil foreach (_.run)
       deploy
     }

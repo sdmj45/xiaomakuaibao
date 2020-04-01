@@ -44,7 +44,7 @@ class Covid extends Module {
       lastCommitTime <- getLastCommitTime
       if ifToDownload(lastCommitTime, lastUpdatedTime)
     } {
-      //downloadFiles
+      downloadFiles
       overwriteToFile(lastUpdatedFile, Some(convertLocalDatetimeToStr(lastCommitTime)))
       updateDataFiles
     }
