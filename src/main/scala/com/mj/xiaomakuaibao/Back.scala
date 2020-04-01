@@ -16,7 +16,8 @@ object Back extends Actor {
       println(s"starting at ${LocalDateTime.now()} ...")
       val news: Module = new News
       val covid: Module = new Covid
-      covid :: news :: Nil foreach (_.run)
+//      covid :: news :: Nil foreach (_.run)
+      news :: Nil foreach (_.run)
       deploy
     }
     case _ => throw new Exception("not allowed !")

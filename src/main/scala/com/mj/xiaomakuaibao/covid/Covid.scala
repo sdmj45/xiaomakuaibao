@@ -44,7 +44,7 @@ class Covid extends Module {
       lastCommitTime <- getLastCommitTime
       if ifToDownload(lastCommitTime, lastUpdatedTime)
     } {
-      downloadFiles
+      //downloadFiles
       overwriteToFile(lastUpdatedFile, Some(convertLocalDatetimeToStr(lastCommitTime)))
       updateDataFiles
     }
@@ -85,7 +85,7 @@ class Covid extends Module {
     implicit val backend = HttpURLConnectionBackend()
     val body = basicRequest
       .get(
-        uri"https://api.github.com/search/commits?q=repo:cedricguadalupe/FRANCE-COVID-19+CGU - Update 2020-"
+        uri"https://api.github.com/search/commits?q=repo:cedricguadalupe/FRANCE-COVID-19+CGU - Maj Geodes %26 Update 2020"
       )
       .header("Accept", "application/vnd.github.cloak-preview")
       .send()
@@ -146,23 +146,6 @@ class Covid extends Module {
     })
     s"""{name:'$name',data:[${data.mkString(",")}]}"""
   }
-
-  /* private def generateNewCaseStr(initialData: immutable.Seq[Map[String, String]]) = {
-     val endCases = initialData.sliding(2).map { case List(x, y) => {
-       val Array(day, month, year) = y("Date").split("/")
-       val diff = y("Total").toInt - x("Total").toInt
-       createNewLine(year, month, day, diff)
-     }
-     }.toList
-
-     val csvHead = initialData.head
-     val Array(day, month, year) = csvHead("Date").split("/")
-     val csvHeadCase = createNewLine(year, month, day, csvHead("Total").toInt)
-
-     val newCaseList = csvHeadCase :: endCases
-     s"""var dailyNewCaseData=[${newCaseList.mkString(",")}]"""
-   }*/
-
 
   private def calculateEachDayDiffStr(initialData: immutable.Seq[Map[String, String]]): String = {
     val endCases = initialData.sliding(2).map { case List(x, y) => {
