@@ -1,0 +1,1 @@
+sitemap: http://daccfrance.com/sitemap.xml
