@@ -26,7 +26,7 @@ class NewsApi {
 
     response.body.fold(
       e => Failure(new Throwable(e)),
-      r => Success(parse(r).extract[NewsApiResponse])
+      r => Success(parse(NewsApi.replaceString(r)).extract[NewsApiResponse])
     )
   }
 
@@ -55,4 +55,14 @@ class NewsApi {
 
 object NewsApi {
   def apply(): NewsApi = new NewsApi()
+
+  val charsToReplace: Map[String, String] =
+    Map("&gt;" -> "")
+
+  def replaceString(s: String): String =
+    charsToReplace
+      .foldLeft[String](s) {
+        case (agg, (k, v)) => agg.replace(k, v)
+      }
+      .replaceAll("<[^>]*>", "")
 }
