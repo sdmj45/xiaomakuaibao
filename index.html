@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>小马快报</title>
-    <meta content="" name="descriptison">
-    <meta content="" name="keywords">
+    <title>小马达可：法国新闻头条，疫情统计, 便民信息, 谣言粉碎, 实用链接, 专题问答</title>
+    <meta name="description" content="小马达可专注于收集翻译法国本土各大媒体一手新闻头条并附有原文链接, 实用信息, 疫情统计, 实用链接, 谣言粉碎, 专题问答, 实时更新, 为华人生活提供便利。" >
+    <meta name="keywords" content="小马达可,新闻,法国,france,巴黎,paris,快报,小马,达可,头条,华人,疫情统计,便民信息,时事快报,实用链接,谣言粉碎,专题问答">
+    <meta name="author" content="daccfrance">
+    <meta name="application-name" content="小马达可">
+    <meta name="MSSmartTagsPreventParsing" content="True">
+    <meta http-equiv="MSThemeCompatible" content="Yes">
     <!-- Favicons -->
+    <link rel="canonical" href="http://daccfrance.com" />
+    <link rel="alternate" hreflang="zh-Hans" href="http://daccfrance.com" />
+    <link rel="alternate" hreflang="fr" href="http://daccfrance.com" />
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <!-- Google Fonts -->
@@ -20,11 +26,10 @@
     <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/timeline.css" rel="stylesheet">
-
+    <script data-ad-client="ca-pub-7802489818449784" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script src="https://code.highcharts.com/maps/highmaps.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/mapdata/countries/fr/custom/fr-all-mainland.js"></script>
@@ -40,7 +45,7 @@
 <header id="header" class="fixed-top">
     <div class="container-fluid d-flex">
         <div class="logo mr-auto">
-            <h1 class="text-light"><a href="index.html"><span>小马快报</span></a></h1>
+            <h1 class="text-light"><a href="index.html"><span>小马达可 daccfrance.com</span></a></h1>
         </div>
         <nav class="nav-menu d-none d-lg-block">
             <ul>
@@ -62,17 +67,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 pt-5 pt-lg-0 order-1 order-lg-1">
-                <h1>收集翻译法国本土各大媒体一手新闻头条，实用信息，实时更新</h1>
+                <p class="text-info">达可取意法语d'acc"好的",取音"达可"拟马蹄声</p>
+                    <h2><strong>收集翻译法国本土各大媒体一手新闻头条，实用信息，实时更新</strong></h2>
                 <div class="text-center"><h2 class="bg-warning text-dark">建议浏览器打开&nbsp;&nbsp;&nbsp;&nbsp;目录在右上角<span><img src="assets/img/finger.png" style="width:10%; height:10%;"></span></h2></div>
-                <div class="row">
-                    <div class="card col-6 col-sm-2"><a class="text-primary text-center" href="#about">疫情统计</a></div>
-                    <div class="card col-6 col-sm-2"><a class="text-primary text-center" href="#food">便民信息</a></div>
-                    <div class="card col-6 col-sm-2"><a class="text-primary text-center" href="#services">时事快报</a></div>
-                    <div class="card col-6 col-sm-2"><a class="text-primary text-center" href="#practical">实用链接</a></div>
-                    <div class="card col-6 col-sm-2"><a class="text-primary text-center" href="#rumor">谣言粉碎</a></div>
-                    <div class="card col-6 col-sm-2"><a class="text-primary text-center" href="#faq">专题问答</a></div>
-                </div>
-                <div class="row"></div>
+                <!--<div class="text-center"><h2 class="bg-success text-dark">手机版出行证明可在<a class="text-warning font-weight-bold" href="#practical">实用链接</a>中找到下载地址</h2></div>-->
+                <!--<div class="row">
+                    <div class="card col-6 col-sm-2"><a class="bg-light text-success text-center" href="#about">疫情统计</a></div>
+                    <div class="card col-6 col-sm-2"><a class="bg-light text-success text-center" href="#food">便民信息</a></div>
+                    <div class="card col-6 col-sm-2"><a class="bg-light text-success text-center" href="#services">时事快报</a></div>
+                    <div class="card col-6 col-sm-2"><a class="bg-light text-success text-center" href="#practical">实用链接</a></div>
+                    <div class="card col-6 col-sm-2"><a class="bg-light text-success text-center" href="#rumor">谣言粉碎</a></div>
+                    <div class="card col-6 col-sm-2"><a class="bg-light text-success text-center" href="#faq">专题问答</a></div>
+                </div>-->
             </div>
             <div class="col-lg-5 order-2 order-lg-2 hero-img">
                 <div class="row" id="summary"></div>
@@ -140,23 +146,54 @@
                 <div class="col-lg-12">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">所有</li>
+                        <li data-filter=".filter-administration">行政</li>
                         <li data-filter=".filter-doctor">医疗</li>
                         <li data-filter=".filter-education">教育</li>
-                        <li data-filter=".filter-administration">行政</li>
                         <li data-filter=".filter-music">音乐</li>
                         <li data-filter=".filter-museum">博物馆</li>
-                        <li data-filter=".filter-cuisine">美食</li>
+                        <li data-filter=".filter-literature">美文</li>
+                        <!--<li data-filter=".filter-cuisine">美食</li>-->
                     </ul>
                 </div>
             </div>
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-administration">
+                    <div class="portfolio-wrap">
+                        <img src="assets/img/portfolio/derogation_telephone.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/derogation_telephone.jpg" data-gall="portfolioGallery"
+                               class="venobox" title="App 1"><i class="icofont-plus-circle"></i></a>
+                            <a href="https://media.interieur.gouv.fr/deplacement-covid-19"
+                               title="More Details" target="_blank"><i class="icofont-link"></i></a>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>interieur.gouv.fr</h4>
+                            <p>手机版出行证明</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-administration">
+                    <div class="portfolio-wrap">
+                        <img src="assets/img/portfolio/interieur-gouv.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/interieur-gouv.jpg" data-gall="portfolioGallery"
+                               class="venobox" title="App 1"><i class="icofont-plus-circle"></i></a>
+                            <a href="https://mobile.interieur.gouv.fr/Actualites/L-actu-du-Ministere/Attestation-de-deplacement-derogatoire-et-justificatif-de-deplacement-professionnel"
+                               title="More Details" target="_blank"><i class="icofont-link"></i></a>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>interieur.gouv.fr</h4>
+                            <p>下载纸质版出行证明</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-6 portfolio-item filter-doctor">
                     <div class="portfolio-wrap">
                         <img src="assets/img/portfolio/doctolib.jpg" class="img-fluid" alt="">
                         <div class="portfolio-links">
                             <a href="assets/img/portfolio/doctolib.jpg" data-gall="portfolioGallery" class="venobox"
                                title="App 1"><i class="icofont-plus-circle"></i></a>
-                            <a href="https://www.films-pour-enfants.com/tous-les-films-pour-enfants.html"
+                            <a href="https://info.doctolib.fr/medecin-generaliste.html?utm_source=linkedin&utm_medium=paid_display&utm_campaign=adv_LK_FR_SC_B2B_ACQ_Click_GP_Skills-group_TCSG&utm_content=SC_ACQ_GP_TCSG_3_03-20"
                                title="More Details" target="_blank"><i class="icofont-link"></i></a>
                         </div>
                         <div class="portfolio-info">
@@ -180,21 +217,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-administration">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/interieur-gouv.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-links">
-                            <a href="assets/img/portfolio/interieur-gouv.jpg" data-gall="portfolioGallery"
-                               class="venobox" title="App 1"><i class="icofont-plus-circle"></i></a>
-                            <a href="https://mobile.interieur.gouv.fr/Actualites/L-actu-du-Ministere/Attestation-de-deplacement-derogatoire-et-justificatif-de-deplacement-professionnel"
-                               title="More Details" target="_blank"><i class="icofont-link"></i></a>
-                        </div>
-                        <div class="portfolio-info">
-                            <h4>interieur.gouv.fr</h4>
-                            <p>下载出行证明</p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-4 col-md-6 portfolio-item filter-music">
                     <div class="portfolio-wrap">
                         <img src="assets/img/portfolio/moniedeparis.jpg" class="img-fluid" alt="">
@@ -207,6 +230,21 @@
                         <div class="portfolio-info">
                             <h4>live.philharmoniedeparis.fr</h4>
                             <p>巴黎爱乐音乐厅在线免费音乐会</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-music">
+                    <div class="portfolio-wrap">
+                        <img src="assets/img/portfolio/opera_de_paris.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/opera_de_paris.jpg" data-gall="portfolioGallery" class="venobox"
+                               title="App 1"><i class="icofont-plus-circle"></i></a>
+                            <a href="https://www.operadeparis.fr/magazine" title="More Details"
+                               target="_blank"><i class="icofont-link"></i></a>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>www.operadeparis.fr</h4>
+                            <p>巴黎歌剧院 在线免费芭蕾,歌舞剧,交响乐</p>
                         </div>
                     </div>
                 </div>
@@ -225,7 +263,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-cuisine">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-literature">
+                    <div class="portfolio-wrap">
+                        <img src="assets/img/portfolio/drone_paris.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/drone_paris.jpg" data-gall="portfolioGallery" class="venobox"
+                               title="App 1"><i class="icofont-plus-circle"></i></a>
+                            <a href="https://mp.weixin.qq.com/s?__biz=MzI2ODU4NjY3NQ==&tempkey=MTA1NV8yTDVxQ3UxQjVwNVQxYWNoQVVsb2kwTGxhSWJhSkNoVWdibTBYTFdZUnp5X05UQS1INjNUZ0g2a21qVEp6cVRORlBBNEZKVk00cFJPaVRCRl9KWHFmbElSb2VtWmlOcS15SmlIb0trRFpRUlEwUWJWY0RueXUycWhLYmxXem8tU1ZweWc5dFVKeW9EbFBaakw0V3JuWGEtTlBmclVqUmdVdFVrYXlRfn4%3D&chksm=6aec1ae05d9b93f6e42446d3e5bfbbc0f06fd75c3a25a26b39f0e7aee389ffbd7a9447ccda0a#rd" title="More Details" target="_blank"><i
+                                    class="icofont-link"></i></a>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>weixin.qq.com</h4>
+                            <p>航拍：疫情下放慢脚步的巴黎</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-literature">
+                    <div class="portfolio-wrap">
+                        <img src="assets/img/portfolio/confinement_france.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/confinement_france.jpg" data-gall="portfolioGallery" class="venobox"
+                               title="App 1"><i class="icofont-plus-circle"></i></a>
+                            <a href="https://mp.weixin.qq.com/s?__biz=MzI2ODU4NjY3NQ==&mid=2247483704&idx=1&sn=97ce17a0a985341824b700e5c451d52c&chksm=eaec1ae4dd9b93f272ad86e414401fda8516edc77c2fb84b762eac5be6dfd12978b3a2fb3909#rd" title="More Details" target="_blank"><i
+                                    class="icofont-link"></i></a>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>weixin.qq.com</h4>
+                            <p>​不一样的法式封城：又现恐袭？原因竟是……</p>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-lg-4 col-md-6 portfolio-item filter-cuisine">
                     <div class="portfolio-wrap">
                         <img src="assets/img/portfolio/cuisine.jpg" class="img-fluid" alt="">
                         <div class="portfolio-links">
@@ -239,7 +307,7 @@
                             <p>法式蔬菜汤</p>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </section><!-- End Portfolio Section -->
@@ -936,6 +1004,29 @@
 
 </main><!-- End #main -->
 
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 footer-contact" data-aos="fade-up" data-aos-delay="100">
+                    <h3>小马达可</h3>
+                    <p>
+                        如果您有一些实用的链接想跟大家分享，或者想<strong>寻求合作</strong>，欢迎跟我们联系 <br><br>
+                        <strong>Email:</strong> contact@daccfrance.com<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="copyright">
+            &copy; Copyright <strong><span>小马达可</span></strong>. All Rights Reserved
+        </div>
+    </div>
+</footer><!-- End Footer -->
 
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 <!-- Vendor JS Files -->
@@ -956,6 +1047,17 @@
 <script src="assets/js/map.js"></script>
 <script src="assets/js/news.js"></script>
 <script src="assets/js/summary.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162357329-1"></script>
+<script>
+ if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1"){
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-162357329-1');
+ }
+</script>
 </body>
 
 </html>
