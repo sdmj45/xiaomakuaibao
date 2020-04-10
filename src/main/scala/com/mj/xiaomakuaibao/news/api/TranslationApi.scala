@@ -39,7 +39,6 @@ class TranslationApi {
     implicit val backend = HttpURLConnectionBackend()
     implicit val formats = DefaultFormats
 
-    println(s"body: $body")
     val response = basicRequest
       .post(
         uri"https://translate.yandex.net/api/v1/tr.json/translate?id=de6f01f2.5e89a991.5f509889-0-0&srv=tr-text&lang=fr-zh&reason=auto&format=text"
