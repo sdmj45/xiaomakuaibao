@@ -31,6 +31,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/timeline.css" rel="stylesheet">
     <link href="assets/css/chinese_store.css" rel="stylesheet">
+    <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
     <script data-ad-client="ca-pub-7802489818449784" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script src="https://code.highcharts.com/maps/highmaps.js"></script>
@@ -331,6 +332,7 @@
                         <li data-filter=".filter-music">音乐</li>
                         <li data-filter=".filter-museum">博物馆</li>
                         <li data-filter=".filter-literature">美文</li>
+                        <li data-filter=".filter-video">视频</li>
                         <!--<li data-filter=".filter-cuisine">美食</li>-->
                     </ul>
                 </div>
@@ -491,6 +493,12 @@
                         </div>
                     </div>
                 </div>-->
+                <div class="col-lg-4 col-md-6 portfolio-item filter-video">
+                    <video id='video-example-1' class="video-js vjs-default-skin" width="400" height="300" controls>
+                        <source type="application/x-mpegURL"
+                                src="https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny_metadata.m3u8">
+                    </video>
+                </div>
             </div>
         </div>
     </section><!-- End Portfolio Section -->
@@ -1271,6 +1279,17 @@
 
       gtag('config', 'UA-162357329-1');
  }
+
+
+
+</script>
+<!-- JS code -->
+<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+<script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+<script>
+videojs('video-example-1');
 </script>
 </body>
 
