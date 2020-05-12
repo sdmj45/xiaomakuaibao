@@ -7,7 +7,7 @@
 			map: 'countries/fr/custom/fr-all-mainland'
 		},
 		title: {
-			text: '新冠肺炎法国分布'
+			text: '新冠肺炎法国住院人数分布'
 		},
 		subtitle: {
 			text: '来源：综合数据'
@@ -26,7 +26,7 @@
 		},
 		series: [{
 			data: mapData,
-			name: '确诊数',
+			name: '住院人数',
 			states: {
 				hover: {
 					color: '#BADA55'
