@@ -1,1 +1,1 @@
-var mapData=[['fr-occ', 407],['fr-pac', 1268],['fr-idf', 8943],['fr-nor', 520],['fr-ges', 3244],['fr-cvl', 829],['fr-naq', 458],['fr-hdf', 1916],['fr-pdl', 552],['fr-bfc', 896],['fr-ara', 2026],['fr-bre', 317]]
+var mapData=[['fr-occ', 270],['fr-pac', 934],['fr-idf', 6663],['fr-nor', 377],['fr-ges', 2286],['fr-cvl', 659],['fr-naq', 347],['fr-hdf', 1513],['fr-pdl', 417],['fr-bfc', 467],['fr-ara', 1334],['fr-bre', 214]]
